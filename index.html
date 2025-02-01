@@ -94,6 +94,52 @@
             color: #ffdd00;
             margin-bottom: 40px;
         }
+
+        .selected-cards-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 150px;
+            height: 200px;
+            border: 3px solid #333;
+            border-radius: 15px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .step-card {
+            width: 150px;
+            height: 200px;
+            border: 3px solid #333;
+            border-radius: 15px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        @media (min-width: 768px) {
+            .selected-cards-container {
+                flex-direction: row;
+                justify-content: center;
+            }
+            .grid-container {
+                gap: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -113,11 +159,43 @@
     <div class="content">
         <h1 class="stage-title">今日のステップを構成しよう！</h1>
         <p class="stage-instruction">カードを選んで、自分だけのタップダンスステージを作ろう！</p>
+
+        <div class="selected-cards-container">
+            <div class="card" id="field-card"></div>
+            <div class="card" id="tempo-card"></div>
+        </div>
+
+        <button class="start-btn" onclick="drawFieldCard()">フィールドカードを引く</button>
+        <button class="start-btn" onclick="drawTempoCard()">テンポカードを引く</button>
+
+        <h2 class="stage-title">ステップカード（16枚）</h2>
+        <button class="start-btn" onclick="drawStepCards()">カードを引く</button>
+        <div class="grid-container" id="step-grid"></div>
+
         <button class="back-btn" onclick="goBack()">戻る</button>
     </div>
 </div>
 
 <script>
+    const fieldCardImages = [
+        "./1_TAPDANCEカードゲーム_基本パック_初心者.094.jpeg",
+        "./1_TAPDANCEカードゲーム_基本パック_初心者.095.jpeg",
+        "./1_TAPDANCEカードゲーム_基本パック_初心者.096.jpeg",
+        "./1_TAPDANCEカードゲーム_基本パック_初心者.097.jpeg"
+    ];
+
+    const tempoCardImages = [
+        "./1_TAPDANCEカードゲーム_基本パック_初心者.098.jpeg",
+        "./1_TAPDANCEカードゲーム_基本パック_初心者.099.jpeg",
+        "./1_TAPDANCEカードゲーム_基本パック_初心者.100.jpeg"
+    ];
+
+    const stepCardImages = [];
+    for (let i = 1; i <= 76; i++) {
+        let num = String(i).padStart(3, '0');
+        stepCardImages.push(`./1_TAPDANCEカードゲーム_基本パック_初心者.${num}.jpeg`);
+    }
+
     function startGame() {
         document.getElementById('homeScreen').style.display = 'none';
         document.getElementById('stageScreen').style.display = 'flex';
@@ -126,6 +204,31 @@
     function goBack() {
         document.getElementById('stageScreen').style.display = 'none';
         document.getElementById('homeScreen').style.display = 'flex';
+    }
+
+    function drawFieldCard() {
+        let randomCard = fieldCardImages[Math.floor(Math.random() * fieldCardImages.length)];
+        document.getElementById("field-card").style.backgroundImage = `url('${randomCard}')`;
+    }
+
+    function drawTempoCard() {
+        let randomCard = tempoCardImages[Math.floor(Math.random() * tempoCardImages.length)];
+        document.getElementById("tempo-card").style.backgroundImage = `url('${randomCard}')`;
+    }
+
+    function drawStepCards() {
+        let shuffled = stepCardImages.sort(() => Math.random() - 0.5);
+        let selectedCards = shuffled.slice(0, 16);
+
+        let gridContainer = document.getElementById("step-grid");
+        gridContainer.innerHTML = "";
+
+        selectedCards.forEach(image => {
+            let cardElement = document.createElement("div");
+            cardElement.classList.add("step-card");
+            cardElement.style.backgroundImage = `url('${image}')`;
+            gridContainer.appendChild(cardElement);
+        });
     }
 </script>
 
