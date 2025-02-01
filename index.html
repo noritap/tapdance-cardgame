@@ -103,9 +103,11 @@
             margin-top: 20px;
         }
 
-        .card {
-            width: 150px;
-            height: 200px;
+        .card, .step-card {
+            width: 20vw;
+            height: 30vw;
+            max-width: 150px;
+            max-height: 200px;
             border: 3px solid #333;
             border-radius: 15px;
             background-size: cover;
@@ -116,28 +118,22 @@
         .grid-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+            gap: 10px;
             justify-content: center;
             margin-top: 20px;
         }
 
-        .step-card {
-            width: 150px;
-            height: 200px;
-            border: 3px solid #333;
-            border-radius: 15px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+        @media (max-width: 600px) {
+            .card, .step-card {
+                width: 22vw;
+                height: 33vw;
+            }
         }
 
-        @media (min-width: 768px) {
-            .selected-cards-container {
-                flex-direction: row;
-                justify-content: center;
-            }
-            .grid-container {
-                gap: 20px;
+        @media (min-width: 601px) and (max-width: 1024px) {
+            .card, .step-card {
+                width: 18vw;
+                height: 27vw;
             }
         }
     </style>
