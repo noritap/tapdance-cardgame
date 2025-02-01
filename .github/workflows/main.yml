@@ -1,0 +1,24 @@
+name: GitHub Backup
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 毎日深夜0時に自動バックアップ
+  workflow_dispatch:     # 手動でも実行可能
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: リポジトリをクローン
+      uses: actions/checkout@v3
+
+    - name: ZIPファイルに圧縮
+      run: |
+        zip -r backup.zip .
+
+    - name: バックアップファイルをGitHubにアップロード
+      uses: actions/upload-artifact@v3
+      with:
+        name: repository-backup
+        path: backup.zip
