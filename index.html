@@ -67,10 +67,28 @@
             border-radius: 10px;
             cursor: pointer;
             transition: transform 0.3s, background-color 0.3s;
+            margin: 10px;
         }
 
         .start-btn:hover, .back-btn:hover {
             background-color: #ff0033;
+            transform: scale(1.1);
+        }
+
+        .link-btn {
+            font-size: 1.8rem;
+            padding: 12px 25px;
+            border: none;
+            background-color: #ffcc00;
+            color: black;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            margin: 10px;
+        }
+
+        .link-btn:hover {
+            background-color: #ffaa00;
             transform: scale(1.1);
         }
 
@@ -146,6 +164,11 @@
         <h1 class="game-title">Tap Dance Card Game</h1>
         <p class="studio-name">（WEB連動型）タップダンス教室 リズムスピーカー</p>
         <button class="start-btn" onclick="startGame()">ゲームスタート</button>
+        <button class="start-btn" onclick="showComingSoon('ステップを練習する')">ステップを練習する</button>
+        <button class="start-btn" onclick="showComingSoon('ステップを作る（登録する）')">ステップを作る（登録する）</button>
+        <button class="start-btn" onclick="showComingSoon('振り付けを踊る')">振り付けを踊る</button>
+        <button class="start-btn" onclick="showComingSoon('振り付けを作る（登録する）')">振り付けを作る（登録する）</button>
+        <button class="link-btn" onclick="window.open('https://rhythmspeaker.stores.jp/news/679e092cff119b51c0fb8dd1', '_blank')">カードゲーム制作ブログ＆使い方説明</button>
         <p class="creator-credit">Created by Noritaka Furusho</p>
     </div>
 </div>
@@ -225,6 +248,10 @@
             cardElement.style.backgroundImage = `url('${image}')`;
             gridContainer.appendChild(cardElement);
         });
+    }
+
+    function showComingSoon(featureName) {
+        alert(`${featureName}は現在作成中です。楽しみにお待ちください！`);
     }
 </script>
 
