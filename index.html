@@ -43,25 +43,26 @@
         .content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            max-width: 1200px;
+            width: 100%;
         }
 
         .game-title {
-            font-size: 4rem;
+            font-size: 3rem;
             margin-bottom: 20px;
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
         }
 
         .studio-name {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
             color: #ffdd00;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
 
         .btn {
-            font-size: 2rem;
-            padding: 15px 30px;
+            font-size: 1.5rem;
+            padding: 10px 20px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
@@ -89,13 +90,22 @@
             transform: scale(1.1);
         }
 
+        .game-options-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
         .game-option {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            padding: 20px;
-            margin: 15px 0;
+            padding: 15px;
+            width: 30%;
+            min-width: 250px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
         }
 
         .game-option:hover {
@@ -105,19 +115,19 @@
 
         .game-option h2 {
             margin: 0 0 10px 0;
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: #ffdd00;
         }
 
         .game-option p {
-            font-size: 1.5rem;
+            font-size: 1rem;
             color: #fff;
-            line-height: 1.6;
+            line-height: 1.4;
         }
 
         .creator-credit {
             margin-top: 20px;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: rgba(255, 255, 255, 0.8);
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
             font-style: italic;
@@ -143,19 +153,21 @@
     <div class="content">
         <h1 class="game-title">ゲームを選んでください</h1>
 
-        <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/step_keyboard.html', '_blank')">
-            <h2>ステップキーボード</h2>
-            <p>タップのリズムをキーボードで練習！自由にステップを入力して、自分だけのビートを作ろう。</p>
-        </div>
+        <div class="game-options-container">
+            <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/step_keyboard.html', '_blank')">
+                <h2>ステップキーボード</h2>
+                <p>タップのリズムをキーボードで練習！自由にステップを入力して、自分だけのビートを作ろう。</p>
+            </div>
 
-        <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_master.html', '_blank')">
-            <h2>タップマスター</h2>
-            <p>表示されたステップを素早く正確に踏んで、タップマスターを目指そう！スピードとリズム感が試される。</p>
-        </div>
+            <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_master.html', '_blank')">
+                <h2>タップマスター</h2>
+                <p>表示されたステップを素早く正確に踏んで、タップマスターを目指そう！スピードとリズム感が試される。</p>
+            </div>
 
-        <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_no_tatujin.html', '_blank')">
-            <h2>タップの達人</h2>
-            <p>難易度の高いステージに挑戦して、真のタップの達人を目指そう！連続コンボで高得点を狙え！</p>
+            <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_no_tatujin.html', '_blank')">
+                <h2>タップの達人</h2>
+                <p>難易度の高いステージに挑戦して、真のタップの達人を目指そう！連続コンボで高得点を狙え！</p>
+            </div>
         </div>
 
         <button class="btn btn-game" onclick="goBackToHome()">ホームに戻る</button>
