@@ -69,8 +69,8 @@
         }
 
         .btn {
-            font-size: 1.5rem;
-            padding: 10px 20px;
+            font-size: 1.2rem;
+            padding: 8px 16px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
@@ -85,7 +85,7 @@
 
         .btn-game:hover {
             background-color: #ff0033;
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .btn-link {
@@ -95,59 +95,94 @@
 
         .btn-link:hover {
             background-color: #ffaa00;
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .game-options-container {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 15px;
         }
 
         .game-option {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            padding: 20px;
-            width: 30%;
-            min-width: 250px;
+            padding: 15px;
+            width: 25%;
+            min-width: 180px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
+            text-align: center;
         }
 
         .game-option:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
         }
 
         .game-option h2 {
-            margin: 0 0 10px 0;
-            font-size: 2rem;
+            margin: 0;
+            font-size: 1.5rem;
             color: #ffdd00;
         }
 
-        .game-option p {
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            z-index: 5;
+        }
+
+        .popup h2 {
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .popup p {
+            margin-bottom: 20px;
             font-size: 1rem;
-            color: #fff;
-            line-height: 1.5;
+        }
+
+        .popup button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: #ff3366;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .popup button:hover {
+            background-color: #ff0033;
         }
 
         .back-to-home {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             padding: 10px 20px;
             border-radius: 10px;
-            font-size: 1.2rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
+            z-index: 4;
         }
 
         .back-to-home:hover {
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.7);
             transform: scale(1.05);
         }
 
@@ -155,24 +190,41 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             padding: 10px 20px;
             border-radius: 10px;
-            font-size: 1.2rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
-            z-index: 3;
+            z-index: 4;
         }
 
         .music-btn:hover {
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.7);
             transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            .btn, .music-btn, .back-to-home {
+                font-size: 1rem;
+                padding: 8px 12px;
+            }
+
+            .game-option {
+                width: 40%;
+                min-width: 140px;
+                padding: 10px;
+            }
+
+            .game-title {
+                font-size: 2rem;
+            }
         }
 
         .creator-credit {
             margin-top: 20px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.8);
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
             font-style: italic;
@@ -200,26 +252,29 @@
     <div class="overlay"></div>
     <div class="content">
         <h1 class="game-title">ゲームを選んでください</h1>
-
         <div class="game-options-container">
-            <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/step_keyboard.html', '_blank')">
+            <div class="game-option" onclick="showPopup('ステップキーボード', 'タップのリズムをキーボードで練習！自由にステップを入力して、自分だけのビートを作ろう。', 'https://noritap.github.io/tapdance-cardgame2/step_keyboard.html')">
                 <h2>ステップキーボード</h2>
-                <p>タップのリズムをキーボードで練習！自由にステップを入力して、自分だけのビートを作ろう。</p>
             </div>
 
-            <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_master.html', '_blank')">
+            <div class="game-option" onclick="showPopup('タップマスター', '表示されたステップを素早く正確に踏んで、タップマスターを目指そう！スピードとリズム感が試される。', 'https://noritap.github.io/tapdance-cardgame2/tap_master.html')">
                 <h2>タップマスター</h2>
-                <p>表示されたステップを素早く正確に踏んで、タップマスターを目指そう！スピードとリズム感が試される。</p>
             </div>
 
-            <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_no_tatujin.html', '_blank')">
+            <div class="game-option" onclick="showPopup('タップの達人', '難易度の高いステージに挑戦して、真のタップの達人を目指そう！連続コンボで高得点を狙え！', 'https://noritap.github.io/tapdance-cardgame2/tap_no_tatujin.html')">
                 <h2>タップの達人</h2>
-                <p>難易度の高いステージに挑戦して、真のタップの達人を目指そう！連続コンボで高得点を狙え！</p>
             </div>
         </div>
 
         <div class="back-to-home" onclick="goBackToHome()">タイトル画面に戻る</div>
     </div>
+</div>
+
+<div class="popup" id="popup">
+    <h2 id="popupTitle"></h2>
+    <p id="popupDescription"></p>
+    <button onclick="startGame()">ゲームを開始する</button>
+    <button onclick="closePopup()">閉じる</button>
 </div>
 
 <script>
@@ -246,6 +301,24 @@
     function goBackToHome() {
         document.getElementById('gameOptions').style.display = 'none';
         document.getElementById('homeScreen').style.display = 'flex';
+    }
+
+    let gameLink = '';
+
+    function showPopup(title, description, link) {
+        document.getElementById('popupTitle').textContent = title;
+        document.getElementById('popupDescription').textContent = description;
+        document.getElementById('popup').style.display = 'block';
+        gameLink = link;
+    }
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+
+    function startGame() {
+        window.open(gameLink, '_blank');
+        closePopup();
     }
 </script>
 
