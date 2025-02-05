@@ -25,9 +25,17 @@
             position: relative;
         }
 
-        .stage-background {
+        .stage-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             background: url('tapdance_stage.jpg') no-repeat center center fixed;
             background-size: cover;
+            color: #fff;
+            text-align: center;
+            position: relative;
         }
 
         .overlay {
@@ -90,17 +98,6 @@
             transform: scale(1.1);
         }
 
-        .lyrics {
-            position: fixed;
-            bottom: 80px;
-            width: 100%;
-            text-align: center;
-            font-size: 1.8rem;
-            color: #ffdd00;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-            z-index: 3;
-        }
-
         .creator-credit {
             margin-top: 20px;
             font-size: 1rem;
@@ -112,9 +109,7 @@
 </head>
 <body>
 
-<video id="bgm" src="tap_dance_song.mp4" autoplay loop style="display:none;"></video>
-
-<div class="lyrics" id="lyricsDisplay"></div>
+<audio id="bgm" src="tap_dance_song.mp4" autoplay loop></audio>
 
 <div class="game-container" id="homeScreen">
     <div class="overlay"></div>
@@ -128,53 +123,18 @@
     </div>
 </div>
 
-<div class="game-container stage-background" id="gameOptions" style="display:none;">
+<div class="stage-container" id="gameOptions" style="display:none;">
     <div class="overlay"></div>
     <div class="content">
         <h1 class="game-title">ゲームを選んでください</h1>
-
-        <div class="game-options-container">
-            <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/step_keyboard.html', '_blank')">
-                <h2>ステップキーボード</h2>
-                <p>タップのリズムをキーボードで練習！自由にステップを入力して、自分だけのビートを作ろう。</p>
-            </div>
-
-            <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_master.html', '_blank')">
-                <h2>タップマスター</h2>
-                <p>表示されたステップを素早く正確に踏んで、タップマスターを目指そう！スピードとリズム感が試される。</p>
-            </div>
-
-            <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_no_tatujin.html', '_blank')">
-                <h2>タップの達人</h2>
-                <p>難易度の高いステージに挑戦して、真のタップの達人を目指そう！連続コンボで高得点を狙え！</p>
-            </div>
-        </div>
-
-        <div class="back-to-home" onclick="goBackToHome()">タイトル画面に戻る</div>
+        <button class="btn btn-game" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/step_keyboard.html', '_blank')">ステップキーボード</button>
+        <button class="btn btn-game" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_master.html', '_blank')">タップマスター</button>
+        <button class="btn btn-game" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_no_tatujin.html', '_blank')">タップの達人</button>
+        <button class="btn btn-game" onclick="goBackToHome()">タイトル画面に戻る</button>
     </div>
 </div>
 
 <script>
-    const lyrics = [
-        { time: 0, text: "タップダンスはもっとつながっていく" },
-        { time: 5, text: "いつでもどこでも誰でもタップダンスを楽しむ時代がきたんだ" },
-        { time: 10, text: "ステップを踏んで、新しいリズムを刻もう！" },
-        { time: 15, text: "" } // 空にして次の表示まで消えるように
-    ];
-
-    const bgm = document.getElementById('bgm');
-    const lyricsDisplay = document.getElementById('lyricsDisplay');
-
-    bgm.addEventListener('timeupdate', () => {
-        const currentTime = bgm.currentTime;
-        for (let i = lyrics.length - 1; i >= 0; i--) {
-            if (currentTime >= lyrics[i].time) {
-                lyricsDisplay.textContent = lyrics[i].text;
-                break;
-            }
-        }
-    });
-
     function showGameOptions() {
         document.getElementById('homeScreen').style.display = 'none';
         document.getElementById('gameOptions').style.display = 'flex';
