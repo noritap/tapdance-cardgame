@@ -98,6 +98,59 @@
             transform: scale(1.1);
         }
 
+        .game-options-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .game-option {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            width: 30%;
+            min-width: 250px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .game-option:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-option h2 {
+            margin: 0 0 10px 0;
+            font-size: 2rem;
+            color: #ffdd00;
+        }
+
+        .game-option p {
+            font-size: 1rem;
+            color: #fff;
+            line-height: 1.5;
+        }
+
+        .back-to-home {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .back-to-home:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+            transform: scale(1.05);
+        }
+
         .creator-credit {
             margin-top: 20px;
             font-size: 1rem;
@@ -109,7 +162,7 @@
 </head>
 <body>
 
-<audio id="bgm" src="tap_dance_song.mp4" autoplay loop></audio>
+<audio id="bgm" src="tap_dance_song.mp3" autoplay loop></audio>
 
 <div class="game-container" id="homeScreen">
     <div class="overlay"></div>
@@ -127,10 +180,25 @@
     <div class="overlay"></div>
     <div class="content">
         <h1 class="game-title">ゲームを選んでください</h1>
-        <button class="btn btn-game" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/step_keyboard.html', '_blank')">ステップキーボード</button>
-        <button class="btn btn-game" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_master.html', '_blank')">タップマスター</button>
-        <button class="btn btn-game" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_no_tatujin.html', '_blank')">タップの達人</button>
-        <button class="btn btn-game" onclick="goBackToHome()">タイトル画面に戻る</button>
+
+        <div class="game-options-container">
+            <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/step_keyboard.html', '_blank')">
+                <h2>ステップキーボード</h2>
+                <p>タップのリズムをキーボードで練習！自由にステップを入力して、自分だけのビートを作ろう。</p>
+            </div>
+
+            <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_master.html', '_blank')">
+                <h2>タップマスター</h2>
+                <p>表示されたステップを素早く正確に踏んで、タップマスターを目指そう！スピードとリズム感が試される。</p>
+            </div>
+
+            <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_no_tatujin.html', '_blank')">
+                <h2>タップの達人</h2>
+                <p>難易度の高いステージに挑戦して、真のタップの達人を目指そう！連続コンボで高得点を狙え！</p>
+            </div>
+        </div>
+
+        <div class="back-to-home" onclick="goBackToHome()">タイトル画面に戻る</div>
     </div>
 </div>
 
