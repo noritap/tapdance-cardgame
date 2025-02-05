@@ -43,6 +43,7 @@
         .content {
             position: relative;
             z-index: 2;
+            max-width: 800px;
         }
 
         .game-title {
@@ -88,6 +89,32 @@
             transform: scale(1.1);
         }
 
+        .game-option {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .game-option:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-option h2 {
+            margin: 0 0 10px 0;
+            font-size: 2.5rem;
+            color: #ffdd00;
+        }
+
+        .game-option p {
+            font-size: 1.5rem;
+            color: #fff;
+            line-height: 1.6;
+        }
+
         .creator-credit {
             margin-top: 20px;
             font-size: 1.2rem;
@@ -115,9 +142,22 @@
     <div class="overlay"></div>
     <div class="content">
         <h1 class="game-title">ゲームを選んでください</h1>
-        <button class="btn btn-game" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/step_keyboard.html', '_blank')">ステップキーボード</button>
-        <button class="btn btn-game" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_master.html', '_blank')">タップマスター</button>
-        <button class="btn btn-game" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_no_tatujin.html', '_blank')">タップの達人</button>
+
+        <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/step_keyboard.html', '_blank')">
+            <h2>ステップキーボード</h2>
+            <p>タップのリズムをキーボードで練習！自由にステップを入力して、自分だけのビートを作ろう。</p>
+        </div>
+
+        <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_master.html', '_blank')">
+            <h2>タップマスター</h2>
+            <p>表示されたステップを素早く正確に踏んで、タップマスターを目指そう！スピードとリズム感が試される。</p>
+        </div>
+
+        <div class="game-option" onclick="window.open('https://noritap.github.io/tapdance-cardgame2/tap_no_tatujin.html', '_blank')">
+            <h2>タップの達人</h2>
+            <p>難易度の高いステージに挑戦して、真のタップの達人を目指そう！連続コンボで高得点を狙え！</p>
+        </div>
+
         <button class="btn btn-game" onclick="goBackToHome()">ホームに戻る</button>
     </div>
 </div>
