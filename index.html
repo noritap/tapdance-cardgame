@@ -125,6 +125,24 @@
             line-height: 1.4;
         }
 
+        .back-to-home {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .back-to-home:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+            transform: scale(1.05);
+        }
+
         .creator-credit {
             margin-top: 20px;
             font-size: 1rem;
@@ -170,7 +188,7 @@
             </div>
         </div>
 
-        <button class="btn btn-game" onclick="goBackToHome()">ホームに戻る</button>
+        <div class="back-to-home" onclick="goBackToHome()">タイトル画面に戻る</div>
     </div>
 </div>
 
