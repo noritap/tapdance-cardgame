@@ -1,13 +1,25 @@
-// 🎵 BGMの再生・停止機能
+// 🎵 BGMの再生・停止機能（デバッグ追加）
 function toggleMusic() {
     let bgm = document.getElementById("bgm");
     let musicBtn = document.querySelector(".music-btn");
 
+    if (!bgm) {
+        console.error("🎵 エラー: BGMのaudioタグが見つかりません！");
+        return;
+    }
+
+    console.log("🎵 音楽ファイルのパス:", bgm.src); // デバッグログ
+
     if (bgm.paused) {
-        bgm.play();
-        musicBtn.textContent = "音楽停止";
+        bgm.play().then(() => {
+            console.log("🎵 音楽再生成功！");
+            musicBtn.textContent = "音楽停止";
+        }).catch(error => {
+            console.error("🎵 音楽を再生できませんでした:", error);
+        });
     } else {
         bgm.pause();
+        console.log("🎵 音楽を一時停止しました");
         musicBtn.textContent = "音楽再生";
     }
 }
