@@ -87,6 +87,19 @@ body {
     text-align: center;
 }
 
+/* ====== ゲーム選択画面の背景設定 ====== */
+.stage-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('../images/tapdance_stage.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+}
+
 /* ====== ゲーム選択画面のスタイル ====== */
 .game-options-container {
     display: flex;
@@ -96,24 +109,24 @@ body {
     margin-top: 20px;
 }
 
+/* 🎮 ゲーム選択ボタン（2サイズ小さく調整） */
 .game-option {
-    background-color: #444;
-    padding: 20px;
+    padding: 8px 16px;  /* ✅ 余白を小さく */
+    font-size: 0.7rem;  /* ✅ 文字サイズを少し小さく */
+    font-weight: bold;
+    background-color: #ffcc00; /* ✅ 統一カラー */
+    border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s;
+    transition: background 0.3s ease, transform 0.1s;
     text-align: center;
-    width: 200px;
+    color: black; /* ✅ 文字の色 */
+    width: 190px; /* ✅ ボタンの幅を小さく */
 }
 
-.game-option h2 {
-    font-size: 1.5rem;
-    color: #fff;
-    margin: 0;
-}
-
+/* 🔥 ホバー時のアニメーション */
 .game-option:hover {
-    background-color: #666;
+    background-color: #ffaa00;
     transform: scale(1.05);
 }
 
@@ -125,7 +138,7 @@ body {
     padding: 20px;
     background: white;
     color: black;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     top: 50%;
     left: 50%;
@@ -159,22 +172,38 @@ body {
     background-color: #ffaa00;
 }
 
-/* ====== 戻るボタン ====== */
+/* ====== 戻るボタン（コンパクト＆右下固定） ====== */
 .back-to-home {
-    margin-top: 20px;
-    background-color: #ff6666;
+    position: fixed; /* ✅ 画面の右下に固定 */
+    bottom: 20px;  /* ✅ 下からの距離 */
+    right: 20px;  /* ✅ 右からの距離 */
+    padding: 10px 20px;  /* ✅ 小さめのボタン */
+    font-size: 0.9rem;  /* ✅ フォントサイズを小さく */
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #ff6666, #cc3333); /* ✅ グラデーション */
+    border: none;
+    border-radius: 30px; /* ✅ 角を丸く */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 3px 10px rgba(255, 102, 102, 0.3); /* ✅ 影を小さく */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
+/* 🔥 ホバー時のアニメーション */
 .back-to-home:hover {
-    background-color: #ff4444;
+    background: linear-gradient(135deg, #cc3333, #aa0000);
+    transform: scale(1.08); /* ✅ 少し大きく */
+    box-shadow: 0 5px 15px rgba(255, 102, 102, 0.5);
 }
 
-/* ====== 🎵 BGMボタン ====== */
+/* ====== 🎵 音楽再生ボタン ====== */
 .music-btn {
-    position: fixed;  /* 画面に固定表示 */
-    top: 10px;  /* 画面上部からの距離 */
-    left: 10px;  /* 画面左端からの距離 */
-    background: rgba(255, 255, 255, 0.8); /* 半透明で見やすく */
+    position: fixed;  /* ✅ 画面の固定位置にする */
+    top: 15px;  /* ✅ 画面上端からの距離 */
+    left: 15px;  /* ✅ 画面左端からの距離 */
+    background: rgba(255, 255, 255, 0.8); /* ✅ 半透明で見やすく */
     border: none;
     color: black;
     padding: 10px 15px;
@@ -183,9 +212,11 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s;
-    z-index: 1000; /* 他の要素よりも手前に表示 */
+    z-index: 10000; /* ✅ 他の要素よりも手前に表示 */
 }
 
+/* 🔥 ホバー時のアニメーション */
 .music-btn:hover {
     background: rgba(255, 255, 255, 1);
+    transform: scale(1.05);
 }
