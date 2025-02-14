@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Tap Dance Card Game</title>
+    <title>タップダンスカードゲーム | Tap Dance Card Game</title>
     
     <!-- CSSファイルの読み込み -->
     <link rel="stylesheet" href="styles/styles.css">
@@ -16,21 +16,23 @@
     <audio id="bgm" src="audio/tapdance_bgm.mp3" loop></audio>
     <button class="music-btn">音楽再生</button>
 
-    <!-- タイトル画面 -->
-    <div class="game-container" id="homeScreen">
-        <div class="overlay"></div>
-        <div class="content">
-            <h1 class="game-title">Tap Dance Card Game</h1>
-            <p class="studio-name">（WEB連動型）タップダンス教室 リズムスピーカー</p>
+<!-- タイトル画面 -->
+<div class="game-container" id="homeScreen">
+    <div class="overlay"></div>
+    <div class="content">
+        <h1 class="game-title">Tap Dance Card Game</h1>
+        <p class="studio-name">（WEB連動型）タップダンス教室 リズムスピーカー</p>
 
-            <!-- ボタン一覧 -->
+        <!-- ボタン一覧（横並び） -->
+        <div class="button-container">
             <button class="btn btn-link" onclick="showGameOptions()">ゲームを始める</button>
             <button class="btn btn-link" onclick="window.location.href='games/card_library.html'">カードライブラリー</button>
             <button class="btn btn-link" onclick="window.location.href='https://rhythmspeaker.stores.jp/news/679e092cff119b51c0fb8dd1'">制作ブログ</button>
-
-            <p class="creator-credit">Created by Noritaka Furusho</p>
         </div>
+
+        <p class="creator-credit">Created by Noritaka Furusho</p>
     </div>
+</div>
 
     <!-- ゲーム選択画面 -->
     <div class="stage-container" id="gameOptions" style="display:none;">
