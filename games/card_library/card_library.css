@@ -1,0 +1,91 @@
+/* 全体のスタイル */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* タイトル */
+h1 {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    margin: 0;
+}
+
+/* カードコンテナ */
+#card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* ✅ カードサイズを大きく */
+    gap: 15px; /* ✅ カード間隔を調整 */
+    padding: 20px;
+    justify-items: center;
+}
+
+/* カードデザイン */
+.card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 120px; /* ✅ カードサイズ調整 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* ✅ 影を追加 */
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+}
+
+.card:hover {
+    transform: scale(1.1); /* ✅ ホバー時に拡大 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* カード画像 */
+.card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* カード内テキスト */
+.card-content {
+    padding: 10px;
+    text-align: center;
+}
+
+.card h3 {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.card p {
+    font-size: 0.8rem;
+    color: #555;
+    margin: 3px 0;
+}
+
+/* 戻るボタン */
+.back-to-home {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 1000;
+}
+
+.back-to-home:hover {
+    background-color: #ffaa00;
+    transform: scale(1.1);
+}

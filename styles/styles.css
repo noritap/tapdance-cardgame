@@ -1,0 +1,231 @@
+/* 全体のリセット */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+}
+
+/* タイトル画面のコンテナ */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('tapdance.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+/* ゲーム選択画面のコンテナ */
+.stage-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('tapdance_stage.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+/* 画面のオーバーレイ */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* コンテンツ配置 */
+.content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* タイトルのデザイン */
+.game-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* スタジオ名 */
+.studio-name {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #ffdd00;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* ボタンの基本スタイル */
+.btn {
+    font-size: 1.2rem;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+    margin: 10px;
+}
+
+/* ゲーム開始ボタン */
+.btn-game {
+    background-color: #ff3366;
+    color: white;
+}
+.btn-game:hover {
+    background-color: #ff0033;
+    transform: scale(1.05);
+}
+
+/* 外部リンクボタン */
+.btn-link {
+    background-color: #ffcc00;
+    color: black;
+}
+.btn-link:hover {
+    background-color: #ffaa00;
+    transform: scale(1.05);
+}
+
+/* ゲーム選択画面のボタン配置 */
+.game-options-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* ゲーム選択のボタン */
+.game-option {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 15px;
+    width: 25%;
+    min-width: 180px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    text-align: center;
+}
+.game-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+.game-option h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #ffdd00;
+}
+
+/* ポップアップ */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    z-index: 5;
+}
+.popup h2 {
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+.popup p {
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+.popup button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #ff3366;
+    color: white;
+    transition: background-color 0.3s;
+}
+.popup button:hover {
+    background-color: #ff0033;
+}
+
+/* 戻るボタン */
+.back-to-home {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 4;
+}
+.back-to-home:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: scale(1.05);
+}
+
+/* 音楽ボタン */
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 4;
+}
+.music-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: scale(1.05);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 600px) {
+    .btn, .music-btn, .back-to-home {
+        font-size: 1rem;
+        padding: 8px 12px;
+    }
+
+    .game-option {
+        width: 40%;
+        min-width: 140px;
+        padding: 10px;
+    }
+
+    .game-title {
+        font-size: 2rem;
+    }
+}
+
+/* クレジット表示 */
+.creator-credit {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    font-style: italic;
+}
