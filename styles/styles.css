@@ -13,7 +13,7 @@ body, html {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url('../images/tapdance.jpg'); /* ✅ 修正: 画像のパス */
+    background-image: url('./images/tapdance.jpg'); /* ✅ 修正: 画像のパス */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -30,7 +30,7 @@ body, html {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url('../images/tapdance_stage.jpg'); /* ✅ 修正: 画像のパス */
+    background-image: url('./images/tapdance_stage.jpg'); /* ✅ 修正: 画像のパス */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -39,6 +39,7 @@ body, html {
     text-align: center;
     position: relative;
 }
+
 
 /* 画面のオーバーレイ（半透明の黒） */
 .overlay {
