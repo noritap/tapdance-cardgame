@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Tap Dance Card Game | タップダンスカードゲーム</title>
-
-    <!-- スタイルシートのリンク -->
+    <title>Tap Dance Card Game</title>
+    
+    <!-- CSSファイルの読み込み -->
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
 
     <!-- BGM -->
-    <audio id="bgm" src="tap_dance_song.mp3" loop autoplay></audio>
-    <button class="music-btn" onclick="toggleMusic()">音楽再生</button>
+    <audio id="bgm" src="audio/tapdance_bgm.mp3" loop></audio>
+    <button class="music-btn">音楽再生</button>
 
     <!-- タイトル画面 -->
     <div class="game-container" id="homeScreen">
@@ -22,10 +22,9 @@
             <h1 class="game-title">Tap Dance Card Game</h1>
             <p class="studio-name">（WEB連動型）タップダンス教室 リズムスピーカー</p>
 
-            <!-- ゲーム開始ボタン -->
-            <button class="btn btn-link" onclick="showGameOptions()">ゲーム</button>
-            <button class="btn btn-link" onclick="window.location.href='games/card_library/card_library.html'">カードライブラリー</button>
-            <button class="btn btn-link" onclick="window.open('https://rhythmspeaker.stores.jp/news/679e092cff119b51c0fb8dd1', '_blank')">カードゲーム制作ブログ</button>
+            <!-- ボタン一覧 -->
+            <button class="btn btn-link" onclick="showGameOptions()">ゲームを始める</button>
+            <button class="btn btn-link" onclick="window.location.href='games/card_library.html'">カードライブラリー</button>
 
             <p class="creator-credit">Created by Noritaka Furusho</p>
         </div>
@@ -38,22 +37,22 @@
             <h1 class="game-title">ゲームを選んでください</h1>
 
             <div class="game-options-container">
-                <div class="game-option" onclick="showPopup('ステップキーボード', 'タップステップをキーボードで配置！', './games/step_keyboard/step_keyboard.html')">
+                <div class="game-option" onclick="showPopup('ステップキーボード', '自由にステップを配置しよう', 'games/step_keyboard.html')">
                     <h2>ステップキーボード</h2>
                 </div>
-                <div class="game-option" onclick="showPopup('タップマスター', 'スピードとステップ理解度が試される。', './games/tap_master/tap_master.html')">
+                <div class="game-option" onclick="showPopup('タップマスター', '正確なステップで挑戦', 'games/tap_master.html')">
                     <h2>タップマスター</h2>
                 </div>
-                <div class="game-option" onclick="showPopup('タップの達人', '高難易度のステージをクリアしよう！', './games/tap_no_tatujin/tap_no_tatujin.html')">
+                <div class="game-option" onclick="showPopup('タップの達人', '難易度の高いチャレンジ', 'games/tap_no_tatujin.html')">
                     <h2>タップの達人</h2>
                 </div>
             </div>
 
-            <div class="back-to-home" onclick="goBackToHome()">タイトル画面に戻る</div>
+            <button class="back-to-home" onclick="goBackToHome()">タイトル画面に戻る</button>
         </div>
     </div>
 
-    <!-- ポップアップ画面 -->
+    <!-- ポップアップ表示 -->
     <div class="popup" id="popup">
         <h2 id="popupTitle"></h2>
         <p id="popupDescription"></p>
@@ -61,8 +60,8 @@
         <button onclick="closePopup()">閉じる</button>
     </div>
 
-    <!-- JavaScriptは最後に配置 -->
-    <script src="./scripts/main.js"></script>
+    <!-- JavaScriptファイルの読み込み -->
+    <script src="scripts/main.js"></script>
 
 </body>
 </html>

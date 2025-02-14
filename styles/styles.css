@@ -6,35 +6,41 @@ body, html {
     font-family: 'Arial', sans-serif;
 }
 
-/* タイトル画面のコンテナ */
+/* タイトル画面の背景 */
 .game-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: url('tapdance.jpg') no-repeat center center fixed;
+    min-height: 100vh;
+    background-image: url('../images/tapdance.jpg'); /* ✅ 修正: 画像のパス */
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: #fff;
     text-align: center;
     position: relative;
 }
 
-/* ゲーム選択画面のコンテナ */
+/* ゲーム選択画面の背景 */
 .stage-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: url('tapdance_stage.jpg') no-repeat center center fixed;
+    min-height: 100vh;
+    background-image: url('../images/tapdance_stage.jpg'); /* ✅ 修正: 画像のパス */
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: #fff;
     text-align: center;
     position: relative;
 }
 
-/* 画面のオーバーレイ */
+/* 画面のオーバーレイ（半透明の黒） */
 .overlay {
     position: absolute;
     top: 0;
