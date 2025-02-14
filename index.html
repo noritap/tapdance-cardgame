@@ -37,7 +37,6 @@
         <div class="content">
             <h1 class="game-title">ゲームを選んでください</h1>
 
-<<<<<<< HEAD
             <div class="game-options-container">
                 <div class="game-option" onclick="showPopup('ステップキーボード', 'タップステップをキーボードで配置！', './games/step_keyboard/step_keyboard.html')">
                     <h2>ステップキーボード</h2>
@@ -49,12 +48,6 @@
                     <h2>タップの達人</h2>
                 </div>
             </div>
-=======
-<script>
-    const bgm = document.getElementById('bgm');
-    bgm.volume = 0.5;
-    let isPlaying = false;
->>>>>>> parent of 83ab2ab (Update index.html)
 
             <div class="back-to-home" onclick="goBackToHome()">タイトル画面に戻る</div>
         </div>
@@ -68,7 +61,8 @@
         <button onclick="closePopup()">閉じる</button>
     </div>
 
-    <!-- メインスクリプト -->
-    <script src="scripts/main.js"></script>
+    <!-- JavaScriptは最後に配置 -->
+    <script src="./scripts/main.js"></script>
+
 </body>
 </html>
