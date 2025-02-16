@@ -205,22 +205,17 @@ body {
 
 /* 🔹 🎵 スマホ対応（画面幅が768px以下のとき） */
 @media screen and (max-width: 768px) {
-    /* ヘッダーのサイズ調整 */
-    .library-header {
-        padding: 15px;
-        font-size: 1rem;
-    }
-
     /* カテゴリーナビゲーションの調整 */
     .category-nav {
-        flex-direction: column; /* ✅ スマホでは縦並びに */
+        flex-wrap: wrap; /* ✅ ボタンを横並びのまま折り返せるように */
+        justify-content: center;
         gap: 5px;
     }
 
     .category-nav button {
-        width: 100%;
-        padding: 12px;
-        font-size: 1rem;
+        width: auto; /* ✅ ボタンの幅を自動調整 */
+        padding: 8px 12px;
+        font-size: 0.9rem;
     }
 
     /* カード種類ごとのコンテナの調整 */
