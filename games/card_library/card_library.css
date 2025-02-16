@@ -211,6 +211,18 @@ body {
         font-size: 1rem;
     }
 
+    /* カテゴリーナビゲーションの調整 */
+    .category-nav {
+        flex-direction: column; /* ✅ スマホでは縦並びに */
+        gap: 5px;
+    }
+
+    .category-nav button {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+
     /* カード種類ごとのコンテナの調整 */
     .card-category {
         padding: 15px;
@@ -233,14 +245,30 @@ body {
 
     /* カードのサイズを調整 */
     .card {
-        width: 90px;
+        width: 90px;  /* ✅ スマホではカードを小さく */
         height: 135px;
     }
 
     /* ポップアップのサイズ調整 */
     .popup-content {
         width: 90%;
+        max-width: 320px;
         padding: 15px;
+        font-size: 0.9rem;
+    }
+
+    /* カード画像のサイズ調整（ポップアップ内） */
+    .popup-content img {
+        width: 100%;
+        max-height: 180px;
+        object-fit: contain;
+    }
+
+    /* 閉じるボタンの位置調整 */
+    .close-btn {
+        top: 5px;
+        right: 10px;
+        font-size: 20px;
     }
 
     /* 戻るボタンの位置調整 */
