@@ -125,39 +125,44 @@ function loadFieldCards() {
         });
 }
 
-// 🔹 フィールドのスロットを更新する（カード名に基づく）
+// 🔹 フィールドのスロットを更新する（カードの比率を維持）
 function updateFieldSlots(fieldName, selectedCard) {
-    document.querySelectorAll(".field-card").forEach(card => card.classList.remove("selected"));
-    selectedCard.classList.add("selected");
+  document.querySelectorAll(".field-card").forEach(card => card.classList.remove("selected"));
+  selectedCard.classList.add("selected");
 
-    const fieldContainer = document.getElementById("field-container");
-    fieldContainer.innerHTML = ""; // スロットをクリア
+  const fieldContainer = document.getElementById("field-container");
+  fieldContainer.innerHTML = ""; // スロットをクリア
 
-    // 🔹 `カード名` から `横×縦` を取得（例: `Field_4X3` → `4列×3段`）
-    const match = fieldName.match(/Field_(\d+)X(\d+)/);
-    if (match) {
-        currentSlotsX = parseInt(match[1]); // `4` (横のスロット数)
-        currentSlotsY = parseInt(match[2]); // `3` (縦のスロット数)
-    } else {
-        console.error("🚨 エラー: フィールドカードのフォーマットが不正です！");
-        return;
-    }
+  const match = fieldName.match(/Field_(\d+)X(\d+)/);
+  if (match) {
+      currentSlotsX = parseInt(match[1]); // `4` (横のスロット数)
+      currentSlotsY = parseInt(match[2]); // `3` (縦のスロット数)
+  } else {
+      console.error("🚨 エラー: フィールドカードのフォーマットが不正です！");
+      return;
+  }
 
-    for (let i = 0; i < currentSlotsY; i++) {
-        const rowDiv = document.createElement("div");
-        rowDiv.classList.add("field-row");
+  // ✅ スマホ用にスロットサイズを動的に調整
+  const isMobile = window.innerWidth <= 768;
+  const slotSize = isMobile ? "50px" : "70px"; // ✅ スマホなら `50px`
+  document.documentElement.style.setProperty("--slot-size", slotSize);
 
-        for (let j = 0; j < currentSlotsX; j++) {
-            const slot = document.createElement("div");
-            slot.classList.add("slot");
-            rowDiv.appendChild(slot);
-        }
+  for (let i = 0; i < currentSlotsY; i++) {
+      const rowDiv = document.createElement("div");
+      rowDiv.classList.add("field-row");
 
-        fieldContainer.appendChild(rowDiv);
-    }
+      for (let j = 0; j < currentSlotsX; j++) {
+          const slot = document.createElement("div");
+          slot.classList.add("slot");
+          rowDiv.appendChild(slot);
+      }
 
-    console.log(`✅ フィールドスロットを ${currentSlotsX}×${currentSlotsY}（ビート数: ${currentSlotsX * currentSlotsY}）に更新しました！`);
+      fieldContainer.appendChild(rowDiv);
+  }
+
+  console.log(`✅ フィールドスロットを ${currentSlotsX}×${currentSlotsY}（ビート数: ${currentSlotsX * currentSlotsY}）に更新しました！`);
 }
+
 
 // 🔹 ページ読み込み時にフィールドカードをロード
 document.addEventListener("DOMContentLoaded", () => {

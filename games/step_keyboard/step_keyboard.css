@@ -233,3 +233,48 @@ body, html {
 .keyboard-button:hover {
   background: #ffcc00;
 }
+/* 🔹 スマホ対応（画面幅が768px以下のとき） */
+@media screen and (max-width: 768px) {
+  /* 🔹 フィールドコンテナのサイズ調整 */
+  .field-container {
+      width: 95%; /* ✅ スマホではフィールドを画面幅いっぱいに */
+      min-height: 300px; /* ✅ 高さを調整 */
+      overflow-x: auto; /* ✅ 横スクロールを可能にする */
+  }
+
+  /* 🔹 フィールドのスロット調整 */
+  .slot {
+      width: 50px; /* ✅ スロットを小さくして画面内に収める */
+      height: 65px; /* ✅ 縦の比率を維持 */
+  }
+
+  /* 🔹 キーボードコンテナのサイズ調整 */
+  .keyboard-container {
+      width: 100%; /* ✅ 画面いっぱいに広げる */
+      padding: 8px; /* ✅ 余白を減らす */
+  }
+
+  /* 🔹 キーボードのボタンを小さくする */
+  .keyboard-button {
+      width: 40px; /* ✅ スマホでは小さめに */
+      height: 55px;
+      font-size: 0.8rem; /* ✅ 文字サイズを調整 */
+  }
+
+  /* 🔹 フィールドカードの選択エリアを小さく */
+  .field-selection {
+      padding: 5px; /* ✅ 余白を減らす */
+      min-height: 60px; /* ✅ 高さを減らす */
+  }
+
+  /* 🔹 フィールドカードのサイズを調整 */
+  .field-card {
+      width: 70px; /* ✅ 小さめに */
+      height: 70px;
+  }
+
+  .field-card img {
+      width: 65%;
+      height: auto;
+  }
+}
