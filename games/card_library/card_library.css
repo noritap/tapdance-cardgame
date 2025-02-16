@@ -99,7 +99,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.2);
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -121,8 +121,8 @@ body {
     display: flex;
     justify-content: space-around; /* ✅ 均等配置 */
     align-items: center;
-    gap: 8px; /* ✅ 各項目の間隔 */
-    margin-top: 10px;
+    gap: 5px; /* ✅ 各項目の間隔 */
+    margin-top: 7px;
 }
 
 /* 🔹 各項目のスタイル */
