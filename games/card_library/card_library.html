@@ -1,26 +1,93 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>カードライブラリー</title>
-    <link rel="stylesheet" href="card_library.css"> <!-- ✅ CSSを適用 -->
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>カードライブラリー | Tap Dance Card Game</title>
 
+    <!-- CSSファイルの読み込み -->
+    <link rel="stylesheet" href="card_library.css">
+
+    <!-- JavaScriptファイルの読み込み（defer を追加してレンダリングを妨げない） -->
+    <script src="card_library.js" defer></script>
+</head>
 <body>
 
-    <h1>カードライブラリー</h1>
+    <!-- 🔹 タイトル -->
+    <header class="library-header">
+        <h1>カードライブラリー</h1>
+    </header>
 
-    <div id="card-container"></div>
+    <main>
+        <!-- 🔹 カード種類ごとのコンテナ -->
+        <section id="Step Card" class="card-category">
+            <h2>ステップカード</h2>
+            <p class="category-info">
+                「足の使い方」を示すカードです。<br>
+                <strong>　① どちらの足を使うのか（右足 or 左足）</strong><br>
+                <strong>　② どの部位で音を出すのか（つま先・かかと・足全体 など）</strong><br>
+                <strong>　③ どんな動きで音を出すのか（キック・ステップ・ジャンプ など）</strong><br>
+                がひと目で分かるようになっています。<br>
+                タップダンスの基本を学ぶために欠かせないカードです。
+            </p>
+            <div class="card-container"></div>
+        </section>
+        
+        <section id="Action Card" class="card-category">
+            <h2>アクションカード</h2>
+            <p>動きを指示するカード（ターンやクロスなど）</p>
+            <div class="card-container"></div>
+        </section>
 
-    <button class="back-to-home" onclick="window.location.href='https://noritap.github.io/tapdance-cardgame/'">
-        タイトル画面に戻る
-    </button>
+        <section id="Body Area Card" class="card-category">
+            <h2>ボディエリアカード</h2>
+            <p>体の部位を指定するカード</p>
+            <div class="card-container"></div>
+        </section>
 
-    <!-- ✅ JavaScriptを外部ファイル化 -->
-    <script src="card_library.js"></script>
+        <section id="Beat Card" class="card-category">
+            <h2>ビートカード</h2>
+            <p>ビート（音の数）を示すカード</p>
+            <div class="card-container"></div>
+        </section>
+
+        <section id="Tempo Card" class="card-category">
+            <h2>テンポカード</h2>
+            <p>テンポ（BPM）を示すカード</p>
+            <div class="card-container"></div>
+        </section>
+
+        <section id="Accent Card" class="card-category">
+            <h2>アクセントカード</h2>
+            <p>強弱のアクセントを指示するカード</p>
+            <div class="card-container"></div>
+        </section>
+
+        <section id="Field Card" class="card-category">
+            <h2>フィールドカード</h2>
+            <p>ステップを配置するエリアを示すカード</p>
+            <div class="card-container"></div>
+        </section>
+    </main>
+
+    <!-- 🔹 タイトル画面に戻るボタン -->
+    <button class="back-to-home" onclick="window.location.href='../../index.html'">タイトル画面に戻る</button>
+
+    <!-- 🔹 カード情報のポップアップ -->
+    <div id="cardPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2 id="popupTitle">カード名</h2>
+            <img id="popupImage" src="" alt="カード画像">
+            <p><strong>種類:</strong> <span id="popupType"></span></p>
+            <p><strong>ダンスジャンル:</strong> <span id="popupGenre"></span></p>
+            <p><strong>足の種類:</strong> <span id="popupFoot"></span></p>
+            <p><strong>部位:</strong> <span id="popupPart"></span></p>
+            <p><strong>動作:</strong> <span id="popupAction"></span></p>
+            <p><strong>ビート数:</strong> <span id="popupBeat"></span></p>
+            <p><strong>ステップレベル:</strong> <span id="popupLevel"></span></p>
+        </div>
+    </div>
 
 </body>
-
 </html>

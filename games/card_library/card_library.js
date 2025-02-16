@@ -1,49 +1,65 @@
-// JSONデータを取得して表示
-fetch('../../data/tap_dance_card_data_updated.json')
-    .then(response => response.json())
-    .then(data => displayCards(data))
-    .catch(error => console.error('データの読み込みに失敗しました:', error));
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("📢 カードライブラリーのデータを読み込み中...");
 
-function displayCards(cards) {
-    const container = document.getElementById('card-container');
-    container.innerHTML = '';
+    fetch("../../data/tap_dance_card_data_updated.json")
+        .then(response => response.json())
+        .then(cards => {
+            console.log("✅ JSONデータを取得:", cards);
 
-    cards.forEach(card => {
-        const cardElement = document.createElement('div');
-        cardElement.classList.add('card');
+            cards.forEach((card, index) => {
+                if (!card.画像) {
+                    console.warn(`⚠️ カード ${index + 1} に画像が設定されていません！`);
+                    return;
+                }
 
-        // 画像要素
-        const img = document.createElement('img');
-        const imgPath = `../../images/${card.画像.replace(/ /g, "_").replace(/×/g, "x")}`;
-        img.src = imgPath;
-        img.alt = card.カード名;
-        img.onerror = function () {
-            img.src = '../../images/default.png'; // ✅ 画像がない場合デフォルト
-        };
+                const categorySection = document.getElementById(card.カードの種類);
+                if (!categorySection) {
+                    console.warn(`⚠️ カテゴリー「${card.カードの種類}」のセクションが見つかりません！`);
+                    return;
+                }
 
-        // カード情報
-        const cardContent = document.createElement('div');
-        cardContent.classList.add('card-content');
+                const cardContainer = categorySection.querySelector(".card-container");
 
-        const id = document.createElement('p');
-        id.textContent = `ID: ${card.カードID}`;
+                const cardElement = document.createElement("div");
+                cardElement.classList.add("card");
 
-        const title = document.createElement('h3');
-        title.textContent = card.カード名;
+                const img = document.createElement("img");
+                img.src = card.画像;
+                img.alt = card.カード名;
+                img.loading = "lazy";
 
-        const details = document.createElement('p');
-        details.textContent = `ビート数: ${card.ビート数 || 'N/A'} | レベル: ${card.ステップレベル || 'N/A'}`;
+                img.onerror = () => {
+                    console.error(`🚨 画像が見つかりません: ${img.src}`);
+                };
 
-        const description = document.createElement('p');
-        description.textContent = card.説明 || '説明がありません';
+                cardElement.addEventListener("click", () => showPopup(card));
 
-        // 要素を結合
-        cardContent.appendChild(id);
-        cardContent.appendChild(title);
-        cardContent.appendChild(details);
-        cardContent.appendChild(description);
-        cardElement.appendChild(img);
-        cardElement.appendChild(cardContent);
-        container.appendChild(cardElement);
-    });
+                cardElement.appendChild(img);
+                cardContainer.appendChild(cardElement);
+            });
+
+            console.log("✅ カードデータの読み込み完了！");
+        })
+        .catch(error => {
+            console.error("🚨 JSONデータの取得に失敗しました:", error);
+        });
+});
+
+// 🔹 ポップアップを表示する関数
+function showPopup(card) {
+    document.getElementById("popupTitle").textContent = card.カード名;
+    document.getElementById("popupImage").src = card.画像;
+    document.getElementById("popupType").textContent = card.カードの種類;
+    document.getElementById("popupGenre").textContent = card.ダンスジャンル;
+    document.getElementById("popupFoot").textContent = card.足の種類 || "なし";
+    document.getElementById("popupPart").textContent = card.部位 || "なし";
+    document.getElementById("popupAction").textContent = card.動作 || "なし";
+    document.getElementById("popupBeat").textContent = card.ビート数 || "なし";
+    document.getElementById("popupLevel").textContent = card.ステップレベル || "なし";
+    document.getElementById("cardPopup").style.display = "flex";
+}
+
+// 🔹 ポップアップを閉じる
+function closePopup() {
+    document.getElementById("cardPopup").style.display = "none";
 }

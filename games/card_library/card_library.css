@@ -1,91 +1,157 @@
-/* 全体のスタイル */
+/* 🔹 全体のデザイン */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
     text-align: center;
 }
 
-/* タイトル */
-h1 {
-    background-color: #333;
+/* 🔹 ヘッダー */
+.library-header {
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
     color: white;
-    padding: 20px 0;
-    margin: 0;
-}
-
-/* カードコンテナ */
-#card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* ✅ カードサイズを大きく */
-    gap: 15px; /* ✅ カード間隔を調整 */
     padding: 20px;
-    justify-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* カードデザイン */
-.card {
-    background-color: white;
-    border: 1px solid #ddd;
+/* 🔹 カード種類ごとのコンテナ */
+.card-category {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
     border-radius: 10px;
-    width: 100%;
-    max-width: 120px; /* ✅ カードサイズ調整 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* ✅ 影を追加 */
-    transition: transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+}
+
+/* 🔹 カード種類ごとの説明 */
+.category-info {
+    font-size: 1rem;
+    color: white;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 600px;
+    margin: 0 auto 15px;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.category-info strong {
+    color: #d35400;
+}
+
+
+.card-category h2 {
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.card-category p {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+/* 🔹 カード一覧 */
+.card-container {
     display: flex;
-    flex-direction: column;
-    padding: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
 }
 
-.card:hover {
-    transform: scale(1.1); /* ✅ ホバー時に拡大 */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+/* 🔹 カードのデザイン */
+.card {
+    width: 120px;
+    height: 180px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
 }
 
-/* カード画像 */
 .card img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-radius: 10px;
 }
 
-/* カード内テキスト */
-.card-content {
-    padding: 10px;
+/* 🔥 ホバー時のアニメーション（カード） */
+.card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 🔹 ポップアップ（モーダル） */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* 🔹 ポップアップの中身 */
+.popup-content {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 320px;
     text-align: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
-.card h3 {
-    font-size: 1rem;
-    margin: 5px 0;
+/* 🔹 カード画像（ポップアップ内） */
+.popup-content img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
-.card p {
-    font-size: 0.8rem;
-    color: #555;
-    margin: 3px 0;
+/* 🔹 閉じるボタン */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
 }
 
-/* 戻るボタン */
+/* 🔹 戻るボタン（常に右下に固定） */
 .back-to-home {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #ffcc00;
-    color: black;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #ff6666, #cc3333);
+    color: white;
     border: none;
-    padding: 15px 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s, transform 0.3s;
+    transition: background 0.3s ease, transform 0.1s;
+    box-shadow: 0 3px 10px rgba(255, 102, 102, 0.3);
     z-index: 1000;
 }
 
+/* 🔥 ホバー時のアニメーション（戻るボタン） */
 .back-to-home:hover {
-    background-color: #ffaa00;
-    transform: scale(1.1);
+    background: linear-gradient(135deg, #cc3333, #aa0000);
+    transform: scale(1.05);
 }
