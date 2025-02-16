@@ -40,7 +40,14 @@ function goBackToHome() {
 function showPopup(title, description, gameLink) {
     document.getElementById("popupTitle").textContent = title;
     document.getElementById("popupDescription").textContent = description;
-    document.getElementById("popup").dataset.link = gameLink;
+
+    // ✅ 正しいディレクトリ構造を考慮したリンクを設定
+    let correctedPath = window.location.origin + "/tapdance-cardgame/" + gameLink;
+
+    console.log("🎮 選択されたゲーム:", title);
+    console.log("🔗 設定するリンク:", correctedPath); // ✅ デバッグで確認
+
+    document.getElementById("popup").dataset.link = correctedPath;
     document.getElementById("popup").style.display = "block";
 }
 
@@ -52,6 +59,14 @@ function closePopup() {
 // 🎮 選んだゲームへ遷移
 function startGame() {
     let gameLink = document.getElementById("popup").dataset.link;
+
+    console.log("🎮 遷移するゲームのリンク:", gameLink); // ✅ ここでデバッグ
+
+    if (!gameLink) {
+        console.error("🚨 エラー: 遷移先のリンクが設定されていません！");
+        return;
+    }
+
     window.location.href = gameLink;
 }
 
