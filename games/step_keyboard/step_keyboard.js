@@ -1,153 +1,166 @@
-  function toggleMenu() {
-      const menu = document.getElementById('menu-popup');
-      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("📢 ステップキーボードのデータを読み込み中...");
 
-    fetch('../../data/tap_dance_card_data_updated.json')
+  fetch("../../data/tap_dance_card_data_updated.json")
       .then(response => response.json())
       .then(data => {
-        window.cardData = data;
-        createKeyboard();
-        mapCardsToButtons(data);
-        updateFieldPattern();
+          window.cardData = data;
+          createKeyboard(); // ✅ キーボードを作成
+          mapCardsToButtons(data);
       })
-      .catch(error => console.error('データの読み込みに失敗しました:', error));
+      .catch(error => console.error("🚨 データの読み込みに失敗しました:", error));
+});
 
-    const fieldBox = document.getElementById('field-box');
-    let currentColumns = 8;
-    const actionHistory = [];
+// 🔹 ボタンマッピング（指定通りに配置）
+const buttonMapping = {
+  'A1': 3, 'A2': 4, 'A3': 5, 'A4': 6, 'A5': 7, 'A6': 8, 'A7': 9, 'A8': 16, 'A9': 15, 'A10': 14, 'A11': 13, 'A12': 12, 'A13': 11, 'A14': 10,
+  'B1': 31, 'B2': 32, 'B3': 33, 'B4': 29, 'B5': 34, 'B6': 35, 'B7': 36, 'B8': 42, 'B9': 41, 'B10': 40, 'B11': 30, 'B12': 39, 'B13': 38, 'B14': 37,
+  'C1': 17, 'C2': 18, 'C3': 19, 'C4': 1, 'C5': 20, 'C6': 21, 'C7': 22, 'C8': 28, 'C9': 27, 'C10': 26, 'C11': 1, 'C12': 25, 'C13': 24, 'C14': 23,
+  'D1': 43, 'D2': 44, 'D3': 45, 'D4': 2, 'D5': 46, 'D6': 47, 'D7': 48, 'D8': 54, 'D9': 53, 'D10': 53, 'D11': 2, 'D12': 51, 'D13': 50, 'D14': 49
+};
 
+// 🔹 キーボードのボタンを作成する（1回だけ定義）
+function createKeyboard() {
+  console.log("🎹 キーボードを作成開始…");
 
-  function createKeyboard() {
-    console.log("キーボードを作成開始…");
+  const rows = ['A', 'B', 'C', 'D'];
+  const columns = Array.from({ length: 14 }, (_, i) => i + 1);
+  const keyboardGrid = document.getElementById('keyboard-grid');
 
-    const rows = ['A', 'B', 'C', 'D'];
-    const columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-    const keyboardContainer = document.getElementById('keyboard-container');
+  if (!keyboardGrid) {
+      console.error("🚨 エラー: キーボードのグリッドが見つかりません！");
+      return;
+  }
 
-    if (!keyboardContainer) {
-        console.error("エラー: キーボードのコンテナが見つかりません！");
-        return;
-    }
+  keyboardGrid.innerHTML = ""; // 既存のデータをクリア
 
-    rows.forEach(row => {
-        columns.forEach(col => {
-            const button = document.createElement('div');
-            button.classList.add('keyboard-button');
-            button.dataset.label = `${row}${col}`;
-            button.textContent = `${row}${col}`;  // ✅ デバッグ用にラベル表示
-            keyboardContainer.appendChild(button);
-        });
-    });
+  rows.forEach(row => {
+      columns.forEach(col => {
+          const keyLabel = `${row}${col}`;
+          const button = document.createElement('div');
+          button.classList.add('keyboard-button');
+          button.dataset.label = keyLabel;
 
-    console.log("キーボードが作成されました！");
+          // 🔹 ID番号を取得し、JSONデータと関連付け
+          const cardId = buttonMapping[keyLabel];
+          button.dataset.cardId = cardId; // ✅ カードIDをボタンにセット
+
+          keyboardGrid.appendChild(button);
+      });
+  });
+
+  console.log("✅ キーボードが作成されました！");
 }
 
+// 🔹 キーボードボタンと JSON データをマッピングする
+function mapCardsToButtons(cards) {
+  document.querySelectorAll('.keyboard-button').forEach(button => {
+      const cardId = button.dataset.cardId;
+      const card = cards.find(c => c.カードID === parseInt(cardId));
 
-    const buttonMapping = {
-      'A1': 3, 'A2': 4, 'A3': 5, 'A4': 6, 'A5': 7, 'A6': 8, 'A7': 9, 'A8': 16, 'A9': 15, 'A10': 14, 'A11': 13, 'A12': 12, 'A13': 11, 'A14': 10,
-      'B1': 31, 'B2': 32, 'B3': 33, 'B4': 29, 'B5': 34, 'B6': 35, 'B7': 36, 'B8': 42, 'B9': 41, 'B10': 40, 'B11': 30, 'B12': 39, 'B13': 38, 'B14': 37,
-      'C1': 17, 'C2': 18, 'C3': 19, 'C4': 1, 'C5': 20, 'C6': 21, 'C7': 22, 'C8': 28, 'C9': 27, 'C10': 26, 'C11': 1, 'C12': 25, 'C13': 24, 'C14': 23,
-      'D1': 43, 'D2': 44, 'D3': 45, 'D4': 2, 'D5': 46, 'D6': 47, 'D7': 48, 'D8': 54, 'D9': 53, 'D10': 53, 'D11': 2, 'D12': 51, 'D13': 50, 'D14': 49
-    };
-
-    function mapCardsToButtons(cards) {
-      document.querySelectorAll('.keyboard-button').forEach(button => {
-        const cardId = buttonMapping[button.dataset.label];
-        const card = cards.find(c => c.カードID === cardId);
-
-        if (card) {
+      if (card) {
           const img = document.createElement('img');
           img.src = card.画像;
           img.alt = card.カード名;
+          img.classList.add("keyboard-icon");
           button.appendChild(img);
 
           button.addEventListener('click', () => addCardToField(card));
-        }
-      });
-    }
-
-    function addCardToField(card) {
-      const rows = fieldBox.querySelectorAll('.field-row');
-      for (let row of rows) {
-        const slots = row.querySelectorAll('.field-slot');
-        for (let slot of slots) {
-          if (!slot.hasChildNodes()) {
-            const cardElement = document.createElement('div');
-            cardElement.classList.add('field-card');
-
-            const img = document.createElement('img');
-            img.src = card.画像;
-            img.alt = card.カード名;
-
-            cardElement.appendChild(img);
-            cardElement.addEventListener('click', () => removeCardFromField(cardElement, slot));
-
-            slot.replaceWith(cardElement);
-            actionHistory.push({ action: 'add', element: cardElement, slot: slot });
-            return;
-          }
-        }
       }
+  });
+}
+
+// 🔹 フィールドのスロットにカードを配置する
+function addCardToField(card) {
+  const emptySlot = document.querySelector(".slot:not(.filled)"); // ✅ 空いているスロットを探す
+
+  if (!emptySlot) {
+      alert("⚠️ フィールドがいっぱいです！");
+      return;
+  }
+
+  emptySlot.classList.add("filled"); // ✅ スロットを「埋まった」状態にする
+  emptySlot.innerHTML = ""; // スロットの中身をクリア
+  const img = document.createElement("img");
+  img.src = card.画像;
+  img.alt = card.カード名;
+  emptySlot.appendChild(img);
+
+  console.log(`🟡 フィールドのスロットに「${card.カード名}」を配置`);
+}
+
+// 🔹 メニューの開閉
+function toggleMenu() {
+  const menu = document.getElementById('menu-popup');
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+// 🔹 現在のフィールドスロット設定（デフォルト）
+let currentSlotsX = 4;
+let currentSlotsY = 1;
+
+// 🔹 フィールドカードのデータを取得し、選択エリアに追加
+function loadFieldCards() {
+    fetch("../../data/tap_dance_card_data_updated.json") // ✅ JSONの正しいパスを指定
+        .then(response => response.json())
+        .then(data => {
+            const fieldCards = data.filter(card => card.カードの種類 === "Field Card");
+            const fieldCardContainer = document.querySelector(".field-card-container");
+
+            fieldCards.forEach(card => {
+                const cardElement = document.createElement("div");
+                cardElement.classList.add("field-card");
+                cardElement.dataset.fieldName = card.カード名; // ✅ カード名をデータ属性にセット
+                cardElement.dataset.image = card.画像; // ✅ 画像データを取得
+
+                const img = document.createElement("img");
+                img.src = card.画像;
+                img.alt = card.カード名;
+
+                cardElement.appendChild(img);
+                fieldCardContainer.appendChild(cardElement);
+
+                // ✅ フィールドカードをクリックするとスロット数を変更
+                cardElement.addEventListener("click", () => updateFieldSlots(card.カード名, cardElement));
+            });
+        });
+}
+
+// 🔹 フィールドのスロットを更新する（カード名に基づく）
+function updateFieldSlots(fieldName, selectedCard) {
+    document.querySelectorAll(".field-card").forEach(card => card.classList.remove("selected"));
+    selectedCard.classList.add("selected");
+
+    const fieldContainer = document.getElementById("field-container");
+    fieldContainer.innerHTML = ""; // スロットをクリア
+
+    // 🔹 `カード名` から `横×縦` を取得（例: `Field_4X3` → `4列×3段`）
+    const match = fieldName.match(/Field_(\d+)X(\d+)/);
+    if (match) {
+        currentSlotsX = parseInt(match[1]); // `4` (横のスロット数)
+        currentSlotsY = parseInt(match[2]); // `3` (縦のスロット数)
+    } else {
+        console.error("🚨 エラー: フィールドカードのフォーマットが不正です！");
+        return;
     }
 
-    function removeCardFromField(cardElement, slot) {
-      const emptySlot = document.createElement('div');
-      emptySlot.classList.add('field-slot');
-      cardElement.replaceWith(emptySlot);
-      actionHistory.push({ action: 'remove', element: emptySlot, slot: cardElement });
-    }
+    for (let i = 0; i < currentSlotsY; i++) {
+        const rowDiv = document.createElement("div");
+        rowDiv.classList.add("field-row");
 
-    function undoLastAction() {
-      const lastAction = actionHistory.pop();
-      if (lastAction) {
-        if (lastAction.action === 'add') {
-          lastAction.element.replaceWith(lastAction.slot);
-        } else if (lastAction.action === 'remove') {
-          lastAction.slot.replaceWith(lastAction.element);
+        for (let j = 0; j < currentSlotsX; j++) {
+            const slot = document.createElement("div");
+            slot.classList.add("slot");
+            rowDiv.appendChild(slot);
         }
-      }
+
+        fieldContainer.appendChild(rowDiv);
     }
 
-    function resetField() {
-      const rows = fieldBox.querySelectorAll('.field-row');
-      rows.forEach(row => {
-        row.innerHTML = '';
-        for (let i = 0; i < currentColumns; i++) {
-          const slot = document.createElement('div');
-          slot.classList.add('field-slot');
-          row.appendChild(slot);
-        }
-      });
-      actionHistory.length = 0;
-    }
+    console.log(`✅ フィールドスロットを ${currentSlotsX}×${currentSlotsY}（ビート数: ${currentSlotsX * currentSlotsY}）に更新しました！`);
+}
 
-    function updateFieldPattern() {
-      const pattern = document.getElementById('pattern').value;
-      const customInput = document.getElementById('custom-columns');
-
-      if (pattern === 'custom') {
-        customInput.style.display = 'inline';
-        currentColumns = parseInt(customInput.value);
-      } else {
-        customInput.style.display = 'none';
-        currentColumns = parseInt(pattern);
-      }
-
-      const rows = fieldBox.querySelectorAll('.field-row');
-      rows.forEach(row => {
-        row.innerHTML = '';
-        row.style.gridTemplateColumns = `repeat(${currentColumns}, 1fr)`;
-        for (let i = 0; i < currentColumns; i++) {
-          const slot = document.createElement('div');
-          slot.classList.add('field-slot');
-          row.appendChild(slot);
-        }
-      });
-    }
-
-    function saveCombination() {
-      const cards = Array.from(document.querySelectorAll('.field-card img')).map(img => img.src);
-      localStorage.setItem('savedCombination', JSON.stringify(cards));
-      alert('カードの並びを保存しました！');
-    }
+// 🔹 ページ読み込み時にフィールドカードをロード
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("📢 ステップキーボードのデータを読み込み中...");
+    loadFieldCards();
+});

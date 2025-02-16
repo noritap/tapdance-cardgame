@@ -1,59 +1,53 @@
-
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-  <meta charset="UTF-8">
-  <title>ステップキーボード</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="./step_keyboard.css">
-
+    <meta charset="UTF-8">
+    <title>ステップキーボード</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./step_keyboard.css">
 </head>
 
 <body>
-  <div class="menu-bar">
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <!-- 🔹 ヘッダー -->
+    <header class="keyboard-header">
+        <h1 class="keyboard-title">ステップキーボード</h1>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </header>
+
+    <!-- 🔹 メニュー（ポップアップ） -->
     <div class="menu-popup" id="menu-popup">
-      <button onclick="window.location.href='index.html'">カードライブラリーへ戻る</button>
-      <button onclick="window.location.href='https://noritap.github.io/tapdance-cardgame2/'">ゲーム画面へ</button>
-      <button onclick="window.location.href='https://noritap.github.io/tapdance-cardgame/'">タイトル画面に戻る</button>
-
+        <button onclick="window.location.href='index.html'">カードライブラリーへ</button>
+        <button onclick="window.location.href='tap_master.html'">タップマスターへ</button>
+        <button onclick="window.location.href='tap_no_tatujin.html'">タップの達人へ</button>
+        <button onclick="window.location.href='index.html'">タイトル画面へ戻る</button>
     </div>
+<!-- 🔹 フィールド選択エリア -->
+<div class="field-selection" id="field-selection">
+  <h3>フィールドカードを選択</h3>
+  <div class="field-card-container">
+      <!-- JSON データから動的にフィールドカードを追加 -->
   </div>
-
-  <div class="action-buttons">
-    <div class="pattern-selector">
-        <label for="pattern">フィールドパターン:</label>
-        <select id="pattern" onchange="updateFieldPattern()">
-            <option value="4">初心者 (4枚)</option>
-            <option value="8">中級者 (8枚)</option>
-            <option value="16">上級者 (16枚)</option>
-            <option value="custom">カスタム</option>
-        </select>
-
-    <input type="number" id="custom-columns" min="1" max="16" value="8" style="display:none;" onchange="updateFieldPattern()">
-    </div>
-
-    <button class="action-button" onclick="undoLastAction()">やり直し</button>
-    <button class="action-button" onclick="resetField()">すべてクリア</button>
-    <button class="action-button" onclick="saveCombination()">保存</button>
 </div>
 
+<!-- 🔹 フィールドコンテナ -->
+<div class="field-container" id="field-container">
+  <!-- JavaScriptでスロットが追加される -->
+</div>
 
-  <div class="field-wrapper">
-    <div class="field-box" id="field-box">
-      <div class="field-row"></div>
-      <div class="field-row"></div>
-      <div class="field-row"></div>
-      <div class="field-row"></div>
+    <!-- 🔹 フィールドコンテナ（16枚×4段のスロットを配置） -->
+    <div class="field-container" id="field-container">
+        <!-- JavaScriptでスロットが追加される -->
     </div>
-  </div>
 
-  <div class="keyboard-container" id="keyboard-container"></div>
+    <!-- 🔹 キーボードコンテナ（画面の下に固定） -->
+    <div class="keyboard-container">
+        <div class="keyboard-grid" id="keyboard-grid">
+            <!-- JSONデータを利用してボタンをマッピング -->
+        </div>
+    </div>
 
-<script src="./step_keyboard.js"></script>
-
+    <script src="./step_keyboard.js"></script>
 
 </body>
 </html>

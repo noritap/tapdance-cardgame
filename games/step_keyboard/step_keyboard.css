@@ -1,159 +1,235 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+/* 🔹 全体のデザイン */
+body, html {
+  height: 100%;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  overflow: hidden;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
 }
 
-.menu-bar {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 1000;
+/* 🔹 ヘッダー */
+.keyboard-header {
+  background: linear-gradient(135deg, #2c3e50, #1a252f);
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.keyboard-title {
+  font-size: 1.5rem;
+  margin: 0 auto;
+}
+
+/* 🔹 メニューボタン */
+.menu-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* 🔹 メニュー（ポップアップ） */
 .menu-popup {
   display: none;
   position: absolute;
   top: 50px;
-  right: 0;
-  background-color: rgba(68, 68, 68, 0.9);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  right: 10px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
   padding: 10px;
 }
 
 .menu-popup button {
   display: block;
   width: 100%;
-  margin: 5px 0;
-  background-color: #555;
-  color: white;
+  background: none;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 10px;
+  text-align: left;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .menu-popup button:hover {
-  background-color: #777;
+  background: #f0f0f0;
 }
 
-.action-buttons {
-    display: flex;            /* 横並び */
-    align-items: center;      /* 縦の位置を中央揃え */
-    justify-content: center;  /* ボタン全体を中央に配置 */
-    gap: 15px;                /* ボタンの間隔を調整 */
-    margin-top: 40px; /* ✅ ここで上の余白を作る */
-}
-
-.pattern-selector {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.action-button {
-  background-color: #555;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.action-button:hover {
-  background-color: #777;
-}
-
-.field-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+/* 🔹 フィールド＆キーボードのレイアウト */
+.main-container {
   flex: 1;
-  overflow-x: auto;
-  padding: 5px;
-  margin-bottom: 110px;
-}
-
-.field-box {
-  display: grid;
-  grid-template-rows: repeat(4, 80px);
-  gap: 8px;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  padding: 8px;
-  background-color: #fff;
-  width: calc(100% - 20px);
-  max-width: 800px;
-}
-
-.field-slot, .field-card {
-  background-color: #e0e0e0;
-  border: 2px dashed #bbb;
-  border-radius: 8px;
-  width: 100%;
-  height: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* ✅ キーボードの上にフィールドを配置 */
   align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s;
-  position: relative;
-  overflow: hidden;
+  padding-bottom: 100px; /* ✅ キーボードとの間に余白 */
 }
 
-.keyboard-container {
-    display: flex;               /* ✅ フレックスボックスを適用 */
-    justify-content: center;      /* ✅ 水平方向に中央揃え */
-    align-items: center;          /* ✅ 垂直方向も中央揃え */
-    flex-wrap: wrap;              /* ✅ 画面が狭い場合は折り返す */
-    gap: 8px;
-    padding: 8px;
-    background-color: #444;
-    position: absolute;           /* ✅ ここを fixed から absolute に変更 */
-    bottom: 10%;                  /* ✅ 画面下から適度に余白を取る */
-    left: 50%;                    /* ✅ 左端を画面中央に */
-    transform: translateX(-50%);   /* ✅ X軸方向に中央揃え */
+/* 🔹 フィールドコンテナ（カードが並ぶエリア） */
+.field-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background: #e0e0e0;
+  min-height: 400px; /* ✅ 4段分の高さ */
+  width: 100%; /* ✅ フィールドの幅を100%に */
+  max-width: 1000px; /* ✅ 最大幅を設定（画面幅にフィット） */
+}
+
+/* 🔹 フィールドの行（横並びのスロット） */
+.field-row {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
     width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-    overflow-x: auto;
 }
 
-
-.keyboard-button {
-  background-color: #eee;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  width: 100%;
-  height: 100%;
+/* 🔹 スロット（カードの比率に合わせて調整） */
+.slot {
+  aspect-ratio: 3 / 4; /* ✅ カードの縦横比（例: 3:4） */
+  width: 70px;
+  height: 93.33px;
+  background: #f8f8f8;
+  border-radius: 5px;
+  border: 2px dashed #bbb;
   display: flex;
-  align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: transform 0.2s;
-  overflow: hidden;
+  align-items: center;
+  font-size: 1rem;
+  color: #bbb;
+  transition: background 0.3s ease-in-out;
 }
 
-.keyboard-button img {
+/* 🔹 スロットが埋まった時のデザイン */
+.slot.filled {
+  background: #ddd;
+  border: 2px solid #888;
+}
+/* 🔹 カードの表示サイズ（スロットにフィット） */
+.slot img {
   width: 100%;
   height: auto;
   object-fit: contain;
-  border-radius: 8px;
 }
 
+/* 🔹 フィールド選択エリア */
+.field-selection {
+  text-align: center;
+  background: #fff8e1;
+  padding: 6px 6px; /* ✅ パディングを減らして高さを調整 */
+  border-bottom: 2px solid #ddd;
+}
+
+.field-card-container {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  padding: 4px;
+}
+
+/* 🔹 フィールドカードのデザイン */
+.field-card {
+  width: 60px;
+  height: 80px;
+  background: white;
+  border-radius: 4px;
+  border: 5px solid #bbb;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, border 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.field-card img {
+  width: 60%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* 🔹 選択中のフィールドカード */
+.field-card.selected {
+  border: 3px solid #ffcc00;
+  transform: scale(1.1);
+}
+
+/* 🔹 フィールド内のカード */
+.field-card {
+  width: 70px;
+  height: 70px;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid #bbb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.field-card img {
+  width: 90%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* 🔹 キーボードコンテナ（画面の最下部に固定） */
+.keyboard-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #474646;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔹 キーボードのグリッド */
+.keyboard-grid {
+  display: grid;
+  grid-template-columns: repeat(14, auto);
+  grid-template-rows: repeat(4, auto);
+  gap: 4px;
+  padding: 10px;
+  width: auto;
+  max-width: 800px;
+  justify-content: center;
+}
+
+/* 🔹 キーボードボタン（比率維持しながら縮小） */
+.keyboard-button {
+  width: 50px;
+  height: 70px;
+  border: none;
+  background: #ffdd57;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+/* 🔹 キーボードアイコン（比率維持しつつ縮小） */
+.keyboard-icon {
+  width: 97%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* 🔹 ホバー時のエフェクト */
 .keyboard-button:hover {
-  transform: scale(1.05);
-  background-color: #ddd;
+  background: #ffcc00;
 }
