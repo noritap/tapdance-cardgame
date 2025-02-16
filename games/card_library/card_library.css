@@ -204,3 +204,27 @@ body {
         font-size: 0.9rem;
     }
 }
+/* 🔹 🎵 スマホ対応（画面幅が768px以下のとき） */
+@media screen and (max-width: 768px) {
+    /* ポップアップのサイズを調整 */
+    .popup-content {
+        width: 90%;
+        max-width: 320px;
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+
+    /* カード画像のサイズ調整 */
+    .popup-content img {
+        width: 100%;
+        max-height: 180px;
+        object-fit: contain;
+    }
+
+    /* 閉じるボタンの位置調整 */
+    .close-btn {
+        top: 5px;
+        right: 10px;
+        font-size: 20px;
+    }
+}
