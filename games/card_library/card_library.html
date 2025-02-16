@@ -16,7 +16,19 @@
     <!-- 🔹 タイトル -->
     <header class="library-header">
         <h1>カードライブラリー</h1>
+        
+        <!-- 🔹 各カテゴリーにジャンプするボタン -->
+        <div class="category-nav">
+            <button onclick="scrollToCategory('Step Card')">ステップ</button>
+            <button onclick="scrollToCategory('Action Card')">アクション</button>
+            <button onclick="scrollToCategory('Body Area Card')">ボディエリア</button>
+            <button onclick="scrollToCategory('Beat Card')">ビート</button>
+            <button onclick="scrollToCategory('Tempo Card')">テンポ</button>
+            <button onclick="scrollToCategory('Accent Card')">アクセント</button>
+            <button onclick="scrollToCategory('Field Card')">フィールド</button>
+        </div>
     </header>
+    
 
     <main>
         <!-- 🔹 カード種類ごとのコンテナ -->
@@ -76,7 +88,7 @@
   <!-- 🔹 カード情報のポップアップ -->
 <div id="cardPopup" class="popup">
     <div class="popup-content">
-        <p></p><strong>ダンスジャンル:</strong> <span id="popupGenre"></span></p>
+        <p><strong>ダンスジャンル:</strong> <span id="popupGenre"></span></p>
         <span class="close-btn" onclick="closePopup()">&times;</span>
         <h2 id="popupTitle">カード名</h2>
         <img id="popupImage" src="" alt="カード画像">

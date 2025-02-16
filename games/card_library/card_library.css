@@ -9,49 +9,75 @@ body {
 
 /* 🔹 ヘッダー */
 .library-header {
-    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    background: linear-gradient(135deg, #2c3e50, #1a252f); /* ✅ ダーク系の背景色 */
     color: white;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔹 カテゴリーナビゲーション（ヘッダー内のボタン） */
+.category-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* 🔹 カテゴリーボタン（黄色系＋黒テキスト） */
+.category-nav button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #ffdd57, #ffcc00); /* ✅ 黄色系 */
+    color: #333; /* ✅ 黒系テキスト */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s;
+}
+
+/* 🔹 ホバー時のエフェクト */
+.category-nav button:hover {
+    background: linear-gradient(135deg, #ffcc00, #ffaa00); /* ✅ 少し濃い黄色に変化 */
+    transform: scale(1.05);
 }
 
 /* 🔹 カード種類ごとのコンテナ */
 .card-category {
     background: white;
     padding: 20px;
-    margin: 20px auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 25px auto;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     max-width: 90%;
 }
 
 /* 🔹 カード種類ごとの説明 */
 .category-info {
     font-size: 1rem;
-    color: white;
-    background: white;
-    padding: 10px;
-    border-radius: 5px;
+    color: #555;
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 8px;
     max-width: 600px;
-    margin: 0 auto 15px;
+    margin: 0 auto 20px;
     text-align: left;
     line-height: 1.6;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .category-info strong {
     color: #d35400;
 }
 
-
+/* 🔹 見出しのスタイル */
 .card-category h2 {
     color: #333;
-    font-size: 1.5rem;
-}
-
-.card-category p {
-    color: #555;
-    font-size: 1rem;
-    margin-bottom: 15px;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #ffcc00;
+    padding-bottom: 5px;
+    display: inline-block;
 }
 
 /* 🔹 カード一覧 */
@@ -60,7 +86,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
-    padding: 10px;
+    padding: 15px;
 }
 
 /* 🔹 カードのデザイン */
@@ -68,7 +94,7 @@ body {
     width: 120px;
     height: 180px;
     background: white;
-    border-radius: 10px;
+    border-radius: 12px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
@@ -82,13 +108,13 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 /* 🔥 ホバー時のアニメーション（カード） */
 .card:hover {
     transform: scale(1.08);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* 🔹 ポップアップ（モーダル） */
@@ -99,7 +125,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.4);
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -109,20 +135,21 @@ body {
 .popup-content {
     background: white;
     padding: 25px;
-    border-radius: 10px;
-    width: 320px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 350px;
     text-align: center;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.3);
     position: relative;
 }
 
 /* 🔹 ポップアップ内の情報を横一列に配置 */
 .popup-info {
     display: flex;
-    justify-content: space-around; /* ✅ 均等配置 */
+    justify-content: space-around;
     align-items: center;
-    gap: 5px; /* ✅ 各項目の間隔 */
-    margin-top: 7px;
+    gap: 8px;
+    margin-top: 10px;
 }
 
 /* 🔹 各項目のスタイル */
@@ -131,7 +158,7 @@ body {
     background: #f8f8f8;
     padding: 8px 12px;
     border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     min-width: 80px;
     text-align: center;
 }
@@ -139,15 +166,15 @@ body {
 /* 🔹 カード画像（ポップアップ内） */
 .popup-content img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
     margin-bottom: 10px;
 }
 
 /* 🔹 閉じるボタン */
 .close-btn {
     position: absolute;
-    top: 10px;
-    right: 15px;
+    top: 8px;
+    right: 12px;
     font-size: 24px;
     cursor: pointer;
 }
@@ -163,10 +190,10 @@ body {
     background: linear-gradient(135deg, #ff6666, #cc3333);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.1s;
-    box-shadow: 0 3px 10px rgba(255, 102, 102, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 102, 102, 0.3);
     z-index: 1000;
 }
 
@@ -176,7 +203,7 @@ body {
     transform: scale(1.05);
 }
 
-/* 🔹 🔥 スマホ対応（画面幅が768px以下のとき） */
+/* 🔹 🎵 スマホ対応（画面幅が768px以下のとき） */
 @media screen and (max-width: 768px) {
     /* ヘッダーのサイズ調整 */
     .library-header {
@@ -206,7 +233,7 @@ body {
 
     /* カードのサイズを調整 */
     .card {
-        width: 90px;  /* ✅ スマホではカードを小さくする */
+        width: 90px;
         height: 135px;
     }
 
@@ -222,29 +249,5 @@ body {
         right: 10px;
         padding: 8px 15px;
         font-size: 0.9rem;
-    }
-}
-/* 🔹 🎵 スマホ対応（画面幅が768px以下のとき） */
-@media screen and (max-width: 768px) {
-    /* ポップアップのサイズを調整 */
-    .popup-content {
-        width: 90%;
-        max-width: 320px;
-        padding: 15px;
-        font-size: 0.9rem;
-    }
-
-    /* カード画像のサイズ調整 */
-    .popup-content img {
-        width: 100%;
-        max-height: 180px;
-        object-fit: contain;
-    }
-
-    /* 閉じるボタンの位置調整 */
-    .close-btn {
-        top: 5px;
-        right: 10px;
-        font-size: 20px;
     }
 }

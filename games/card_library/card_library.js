@@ -2,7 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("📢 カードライブラリーのデータを読み込み中...");
 
     fetch("../../data/tap_dance_card_data_updated.json")
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error("🚨 JSONの取得に失敗しました！");
+            return response.json();
+        })
         .then(cards => {
             console.log("✅ JSONデータを取得:", cards);
 
@@ -19,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 const cardContainer = categorySection.querySelector(".card-container");
-
                 const cardElement = document.createElement("div");
                 cardElement.classList.add("card");
 
@@ -28,9 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 img.alt = card.カード名;
                 img.loading = "lazy";
 
-                img.onerror = () => {
-                    console.error(`🚨 画像が見つかりません: ${img.src}`);
-                };
+                img.onerror = () => console.error(`🚨 画像が見つかりません: ${img.src}`);
 
                 cardElement.addEventListener("click", () => showPopup(card));
 
@@ -40,10 +40,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
             console.log("✅ カードデータの読み込み完了！");
         })
-        .catch(error => {
-            console.error("🚨 JSONデータの取得に失敗しました:", error);
-        });
+        .catch(error => console.error("🚨 JSONデータの取得に失敗しました:", error));
 });
+
+// 🔹 指定したカテゴリーのセクションにスクロール
+function scrollToCategory(categoryName) {
+    const section = document.querySelector(`[id='${categoryName}']`);
+    if (section) {
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+        console.error(`🚨 セクション ${categoryName} が見つかりません！`);
+    }
+}
 
 // 🔹 ポップアップを表示する関数
 function showPopup(card) {
