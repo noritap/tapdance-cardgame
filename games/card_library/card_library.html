@@ -73,21 +73,26 @@
     <!-- 🔹 タイトル画面に戻るボタン -->
     <button class="back-to-home" onclick="window.location.href='../../index.html'">タイトル画面に戻る</button>
 
-    <!-- 🔹 カード情報のポップアップ -->
-    <div id="cardPopup" class="popup">
-        <div class="popup-content">
-            <span class="close-btn" onclick="closePopup()">&times;</span>
-            <h2 id="popupTitle">カード名</h2>
-            <img id="popupImage" src="" alt="カード画像">
-            <p><strong>種類:</strong> <span id="popupType"></span></p>
-            <p><strong>ダンスジャンル:</strong> <span id="popupGenre"></span></p>
-            <p><strong>足の種類:</strong> <span id="popupFoot"></span></p>
+  <!-- 🔹 カード情報のポップアップ -->
+<div id="cardPopup" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <h2 id="popupTitle">カード名</h2>
+        <img id="popupImage" src="" alt="カード画像">
+        <p><strong>種類:</strong> <span id="popupType"></span></p>
+        <p><strong>ダンスジャンル:</strong> <span id="popupGenre"></span></p>
+
+        <!-- 🔹 左右・部位・動作 を横並びに -->
+        <div class="popup-info">
+            <p><strong>左右:</strong> <span id="popupFoot"></span></p>
             <p><strong>部位:</strong> <span id="popupPart"></span></p>
             <p><strong>動作:</strong> <span id="popupAction"></span></p>
-            <p><strong>ビート数:</strong> <span id="popupBeat"></span></p>
-            <p><strong>ステップレベル:</strong> <span id="popupLevel"></span></p>
         </div>
+
+        <p><strong>ビート数:</strong> <span id="popupBeat"></span></p>
+        <p><strong>ステップレベル:</strong> <span id="popupLevel"></span></p>
     </div>
+</div>
 
 </body>
 </html>

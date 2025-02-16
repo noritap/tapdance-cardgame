@@ -116,6 +116,26 @@ body {
     position: relative;
 }
 
+/* 🔹 ポップアップ内の情報を横一列に配置 */
+.popup-info {
+    display: flex;
+    justify-content: space-around; /* ✅ 均等配置 */
+    align-items: center;
+    gap: 8px; /* ✅ 各項目の間隔 */
+    margin-top: 10px;
+}
+
+/* 🔹 各項目のスタイル */
+.popup-info p {
+    font-size: 1rem;
+    background: #f8f8f8;
+    padding: 8px 12px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    min-width: 80px;
+    text-align: center;
+}
+
 /* 🔹 カード画像（ポップアップ内） */
 .popup-content img {
     width: 100%;

@@ -51,7 +51,7 @@ function showPopup(card) {
     document.getElementById("popupImage").src = card.画像;
     document.getElementById("popupType").textContent = card.カードの種類;
     document.getElementById("popupGenre").textContent = card.ダンスジャンル;
-    document.getElementById("popupFoot").textContent = card.足の種類 || "なし";
+    document.getElementById("popupFoot").textContent = card.左右 || "なし";
     document.getElementById("popupPart").textContent = card.部位 || "なし";
     document.getElementById("popupAction").textContent = card.動作 || "なし";
     document.getElementById("popupBeat").textContent = card.ビート数 || "なし";
