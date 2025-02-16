@@ -155,3 +155,52 @@ body {
     background: linear-gradient(135deg, #cc3333, #aa0000);
     transform: scale(1.05);
 }
+
+/* 🔹 🔥 スマホ対応（画面幅が768px以下のとき） */
+@media screen and (max-width: 768px) {
+    /* ヘッダーのサイズ調整 */
+    .library-header {
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    /* カード種類ごとのコンテナの調整 */
+    .card-category {
+        padding: 15px;
+        margin: 15px auto;
+        max-width: 95%;
+    }
+
+    /* カテゴリーの説明の調整 */
+    .category-info {
+        font-size: 0.9rem;
+        padding: 8px;
+        max-width: 100%;
+    }
+
+    /* カード一覧の調整 */
+    .card-container {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    /* カードのサイズを調整 */
+    .card {
+        width: 90px;  /* ✅ スマホではカードを小さくする */
+        height: 135px;
+    }
+
+    /* ポップアップのサイズ調整 */
+    .popup-content {
+        width: 90%;
+        padding: 15px;
+    }
+
+    /* 戻るボタンの位置調整 */
+    .back-to-home {
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}

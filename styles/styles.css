@@ -220,3 +220,60 @@ body {
     background: rgba(255, 255, 255, 1);
     transform: scale(1.05);
 }
+/* 🔹 🎵 スマホ対応（画面幅が768px以下のとき） */
+@media screen and (max-width: 768px) {
+    /* タイトルのフォントサイズ調整 */
+    .game-title {
+        font-size: 2rem;
+    }
+
+    .studio-name {
+        font-size: 1rem;
+    }
+
+    /* ボタンサイズ調整 */
+    .btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .btn-link {
+        width: 200px;
+        font-size: 1rem;
+    }
+
+    /* ボタンコンテナの配置調整 */
+    .button-container {
+        flex-direction: column;  /* ✅ スマホでは縦並びにする */
+        gap: 15px;
+    }
+
+    /* ゲーム選択画面の調整 */
+    .game-options-container {
+        flex-direction: column;  /* ✅ スマホでは縦に並ぶ */
+        gap: 15px;
+    }
+
+    .game-option {
+        width: 100%;
+        max-width: 250px;
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    /* 音楽ボタンの調整 */
+    .music-btn {
+        top: 10px;
+        left: 10px;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    /* 戻るボタンのサイズ調整 */
+    .back-to-home {
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}
