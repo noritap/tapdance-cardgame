@@ -276,46 +276,54 @@ body, html {
 }
 /* 🔹 スマホ対応（画面幅が768px以下のとき） */
 @media screen and (max-width: 768px) {
+  /* 🔹 画面全体を縮小 */
+  .main-container {
+      transform: scale(0.8); /* ✅ 全体を80%に縮小 */
+      transform-origin: top center; /* ✅ 上中央を基準に縮小 */
+  }
+
   /* 🔹 フィールドコンテナのサイズ調整 */
   .field-container {
-      width: 95%; /* ✅ スマホではフィールドを画面幅いっぱいに */
-      min-height: 300px; /* ✅ 高さを調整 */
+      width: 90%; /* ✅ スマホではフィールドを画面幅いっぱいに */
+      min-height: 240px; /* ✅ 高さを調整 */
       overflow-x: auto; /* ✅ 横スクロールを可能にする */
   }
 
   /* 🔹 フィールドのスロット調整 */
   .slot {
-      width: 50px; /* ✅ スロットを小さくして画面内に収める */
-      height: 65px; /* ✅ 縦の比率を維持 */
+      width: 40px; /* ✅ スロットを小さくして画面内に収める */
+      height: 50px; /* ✅ 縦の比率を維持 */
   }
 
   /* 🔹 キーボードコンテナのサイズ調整 */
   .keyboard-container {
       width: 100%; /* ✅ 画面いっぱいに広げる */
-      padding: 8px; /* ✅ 余白を減らす */
+      padding: 5px; /* ✅ 余白を減らす */
+      transform: scale(0.9); /* ✅ キーボード全体を90%に縮小 */
+      transform-origin: center; /* ✅ 縮小の基準を中央に */
   }
 
   /* 🔹 キーボードのボタンを小さくする */
   .keyboard-button {
-      width: 40px; /* ✅ スマホでは小さめに */
-      height: 55px;
-      font-size: 0.8rem; /* ✅ 文字サイズを調整 */
+      width: 35px; /* ✅ スマホでは小さめに */
+      height: 50px;
+      font-size: 0.7rem; /* ✅ 文字サイズを調整 */
   }
 
   /* 🔹 フィールドカードの選択エリアを小さく */
   .field-selection {
-      padding: 5px; /* ✅ 余白を減らす */
-      min-height: 60px; /* ✅ 高さを減らす */
+      padding: 3px; /* ✅ 余白を減らす */
+      min-height: 50px; /* ✅ 高さを減らす */
   }
 
   /* 🔹 フィールドカードのサイズを調整 */
   .field-card {
-      width: 70px; /* ✅ 小さめに */
-      height: 70px;
+      width: 60px; /* ✅ 小さめに */
+      height: 60px;
   }
 
   .field-card img {
-      width: 65%;
+      width: 60%;
       height: auto;
   }
 }
