@@ -92,6 +92,47 @@ body, html {
     width: 100%;
 }
 
+/* 🔹 フィールド削除ボタン */
+.field-actions {
+  text-align: center;
+  margin-top: 10px;
+}
+
+#clearField {
+  background: #ff6666;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+#clearField:hover {
+  background: #cc3333;
+}
+
+/* 🔹 フィールド保存ボタン */
+#saveField {
+  background: #4CAF50; /* ✅ 緑色 */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  margin-left: 8px; /* ✅ 「全て削除」ボタンとの間隔 */
+}
+
+#saveField:hover {
+  background: #388E3C;
+}
+
+
 /* 🔹 スロット（カードの比率に合わせて調整） */
 .slot {
   aspect-ratio: 3 / 4; /* ✅ カードの縦横比（例: 3:4） */

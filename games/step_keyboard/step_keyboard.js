@@ -125,6 +125,49 @@ function loadFieldCards() {
         });
 }
 
+// 🔹 フィールド内の全てのカードを削除する
+function clearField() {
+  document.querySelectorAll(".slot").forEach(slot => {
+      slot.innerHTML = ""; // ✅ スロットを空にする
+      slot.classList.remove("filled"); // ✅ スロットの状態をリセット
+  });
+
+  console.log("🗑 フィールドを全て削除しました！");
+}
+
+// 🔹 「全て削除」ボタンのイベントを設定
+document.getElementById("clearField").addEventListener("click", clearField);
+
+// 🔹 フィールドのスロットにカードを配置する
+function addCardToField(card) {
+  const emptySlot = document.querySelector(".slot:not(.filled)"); // ✅ 空いているスロットを探す
+
+  if (!emptySlot) {
+      alert("⚠️ フィールドがいっぱいです！");
+      return;
+  }
+
+  emptySlot.classList.add("filled"); // ✅ スロットを「埋まった」状態にする
+  emptySlot.innerHTML = ""; // スロットの中身をクリア
+  const img = document.createElement("img");
+  img.src = card.画像;
+  img.alt = card.カード名;
+
+  // ✅ クリックで削除できるようにする
+  img.addEventListener("click", () => removeCardFromField(emptySlot));
+
+  emptySlot.appendChild(img);
+
+  console.log(`🟡 フィールドのスロットに「${card.カード名}」を配置`);
+}
+
+// 🔹 フィールドのカードを削除する（クリックで削除）
+function removeCardFromField(slot) {
+  slot.innerHTML = ""; // ✅ スロットの中身をクリア
+  slot.classList.remove("filled"); // ✅ スロットを空にする
+  console.log("🗑 カードを削除しました！");
+}
+
 // 🔹 フィールドのスロットを更新する（カードの比率を維持）
 function updateFieldSlots(fieldName, selectedCard) {
   document.querySelectorAll(".field-card").forEach(card => card.classList.remove("selected"));
@@ -141,6 +184,98 @@ function updateFieldSlots(fieldName, selectedCard) {
       console.error("🚨 エラー: フィールドカードのフォーマットが不正です！");
       return;
   }
+  // 🔹 フィールドのデータを保存
+function saveField() {
+  let savedSteps = [];
+
+  document.querySelectorAll(".slot.filled img").forEach(img => {
+      savedSteps.push({
+          画像: img.src,
+          カード名: img.alt
+      });
+  });
+
+  if (savedSteps.length === 0) {
+      alert("⚠️ フィールドにカードがありません！");
+      return;
+  }
+
+  localStorage.setItem("savedField", JSON.stringify(savedSteps));
+
+  console.log("✅ フィールドを保存しました:", savedSteps);
+  alert("✅ フィールドの振り付けを保存しました！");
+}
+
+// 🔹 「フィールドを保存」ボタンのイベントを設定
+document.getElementById("saveField").addEventListener("click", saveField);
+
+// 🔹 シェアURLを作成
+function shareField() {
+  let fieldCard = document.querySelector(".field-card.selected");
+  if (!fieldCard) {
+      alert("⚠️ フィールドカードが選択されていません！");
+      return;
+  }
+
+  let fieldCardId = parseInt(fieldCard.dataset.cardId);
+  let stepCardIds = [];
+
+  document.querySelectorAll(".slot.filled img").forEach(img => {
+      const card = window.cardData.find(c => c.画像 === img.src);
+      if (card) stepCardIds.push(card.カードID);
+  });
+
+  if (stepCardIds.length === 0) {
+      alert("⚠️ フィールドにカードがありません！");
+      return;
+  }
+
+  let dataToShare = { フィールドカード: fieldCardId, ステップカード: stepCardIds };
+  let encodedData = encodeBase64(JSON.stringify(dataToShare));
+  let shareURL = `${window.location.origin}/games/step_keyboard/step_keyboard.html?data=${encodedData}`;
+
+  console.log("🔗 生成されたシェアURL:", shareURL);
+
+  navigator.clipboard.writeText(shareURL).then(() => {
+      alert("✅ シェアURLをコピーしました！\n" + shareURL);
+  }).catch(err => {
+      console.error("🚨 URLのコピーに失敗:", err);
+  });
+}
+
+// 🔹 URL からデータを読み取り、フィールドに復元
+function loadSharedField() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const encodedData = urlParams.get("data");
+
+  if (!encodedData) return;
+
+  try {
+      const decodedData = JSON.parse(decodeBase64(encodedData));
+      console.log("🔄 シェアされたデータをロード:", decodedData);
+
+      let fieldCard = window.cardData.find(c => c.カードID === decodedData.フィールドカード);
+      if (fieldCard) updateFieldSlots(fieldCard);
+
+      decodedData.ステップカード.forEach(stepId => {
+          const card = window.cardData.find(c => c.カードID === stepId);
+          if (card) addCardToField(card);
+      });
+
+      alert("✅ シェアされたステップ配列をロードしました！");
+  } catch (error) {
+      console.error("🚨 データのデコードに失敗:", error);
+  }
+}
+
+// 🔹 エンコード・デコード関数
+function encodeBase64(str) { return btoa(unescape(encodeURIComponent(str))); }
+function decodeBase64(str) { return decodeURIComponent(escape(atob(str))); }
+
+// 🔹 イベントリスナー
+document.getElementById("shareField").addEventListener("click", shareField);
+
+
 
   // ✅ スマホ用にスロットサイズを動的に調整
   const isMobile = window.innerWidth <= 768;
